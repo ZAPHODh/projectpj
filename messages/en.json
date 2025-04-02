@@ -1,0 +1,235 @@
+{
+    "footer": {
+        "stayConnected": {
+            "title": "Stay Connected",
+            "description": "Join our newsletter for the latest updates and exclusive offers.",
+            "form": {
+                "emailLabel": "Email",
+                "emailDescription": "Your email to contact you",
+                "subscribe": "Subscribe",
+                "placeholder": "example@email.com"
+            }
+        },
+        "quickLinks": {
+            "title": "Quick Links",
+            "links": {
+                "home": "Home",
+                "products": "Products",
+                "account": "Account",
+                "faq": "FAQ"
+            }
+        },
+        "logoSection": {
+            "title": "project",
+            "addressLines": [
+                "project",
+                "project",
+                "project",
+                "project",
+                "project",
+                "project",
+                "project"
+            ]
+        },
+        "followUs": {
+            "title": "Follow Us",
+            "socials": {
+                "facebook": "Follow us on Facebook",
+                "twitter": "Follow us on Twitter",
+                "instagram": "Follow us on Instagram",
+                "whatsapp": "Connect with us on WhatsApp"
+            }
+        },
+        "copyright": "© {year} Project. All rights reserved.",
+        "footerLinks": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "cookies": "Cookie Settings"
+        }
+    },
+    "account": {
+        "appearance": {
+            "title": "Appearance",
+            "description": "Customize the appearance of the app. Automatically switch between day and night themes.",
+            "appearanceForm": {
+                "labels": {
+                    "font": "Font",
+                    "theme": "Theme"
+                },
+                "descriptions": {
+                    "font": "Set the font you want to use in the dashboard.",
+                    "theme": "Select the theme for the dashboard."
+                },
+                "options": {
+                    "font": {
+                        "geist": "Geist",
+                        "inter": "Inter",
+                        "manrope": "Manrope"
+                    },
+                    "theme": {
+                        "light": "Light",
+                        "dark": "Dark"
+                    }
+                },
+                "buttons": {
+                    "update": "Update preferences"
+                },
+                "errors": {
+                    "theme": "Please select a theme.",
+                    "font": "Please select a font."
+                }
+            }
+        },
+        "settings": {
+            "title": "Profile",
+            "description": "Configure your account"
+        },
+        "sidenav": {
+            "profile": "Profile",
+            "salon": "Salon",
+            "apparence": "Apparence",
+            "professionals": "Professionals",
+            "layout": {
+                "heading": "Settings",
+                "description": "Configure your account in your way"
+            }
+        },
+        "profileForm": {
+            "labels": {
+                "name": "Name",
+                "dob": "Date of birth",
+                "email": "Email",
+                "theme": "Theme",
+                "font": "Font"
+            },
+            "placeholders": {
+                "name": "your-name",
+                "date": "Pick a date"
+            },
+            "descriptions": {
+                "name": "This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.",
+                "dob": "Your date of birth is used to calculate your age.",
+                "theme": "Select a theme for your interface.",
+                "font": "Select a font for your interface."
+            },
+            "buttons": {
+                "update": "Update profile"
+            },
+            "toast": {
+                "title": "You submitted the following values:"
+            },
+            "errors": {
+                "name": {
+                    "min": "Username must be at least 2 characters.",
+                    "max": "Username must not be longer than 30 characters."
+                },
+                "dob": "A date of birth is required.",
+                "email": "Please select an email to display.",
+                "theme": "Please select a theme.",
+                "font": "Please select a font."
+            }
+        }
+    },
+    "calendar": {
+        "common": {
+            "all": "All"
+        },
+        "dayView": {
+            "currentSchedules": {
+                "ongoing": "Ongoing",
+                "empty": "No ongoing schedules at the moment"
+            }
+        },
+        "weekDays": {
+            "sun": "Sun",
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat"
+        },
+        "dialog": {
+            "add": {
+                "title": "New Schedule",
+                "description": "Fill in the details of the new schedule",
+                "fields": {
+                    "title": {
+                        "label": "Title",
+                        "placeholder": "Schedule title"
+                    },
+                    "startDate": {
+                        "label": "Start Date",
+                        "placeholder": "Select a date"
+                    },
+                    "endDate": {
+                        "label": "End Date",
+                        "placeholder": "Select a date"
+                    },
+                    "startTime": {
+                        "label": "Start Time"
+                    },
+                    "endTime": {
+                        "label": "End Time"
+                    },
+                    "variant": {
+                        "label": "Identification Color",
+                        "placeholder": "Select a color",
+                        "options": {
+                            "blue": {
+                                "label": "Blue",
+                                "color": "Blue"
+                            },
+                            "green": {
+                                "label": "Green",
+                                "color": "Green"
+                            },
+                            "red": {
+                                "label": "Red",
+                                "color": "Red"
+                            },
+                            "purple": {
+                                "label": "Purple",
+                                "color": "Purple"
+                            }
+                        }
+                    },
+                    "description": {
+                        "label": "Description",
+                        "placeholder": "Schedule details"
+                    }
+                },
+                "buttons": {
+                    "cancel": "Cancel",
+                    "submit": "Save Schedule"
+                },
+                "validation": {
+                    "required": "Required field",
+                    "invalid_time": "Invalid time",
+                    "time_order": "End time must be after start time"
+                }
+            },
+            "detail": {
+                "title": "Schedule Details",
+                "description": "Appointment details",
+                "sections": {
+                    "professional": {
+                        "label": "Professional"
+                    },
+                    "start": {
+                        "label": "Start"
+                    },
+                    "end": {
+                        "label": "End"
+                    },
+                    "description": {
+                        "label": "Description"
+                    }
+                },
+                "buttons": {
+                    "close": "Close"
+                }
+            }
+        }
+    }
+}

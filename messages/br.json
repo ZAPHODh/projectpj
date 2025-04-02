@@ -1,0 +1,235 @@
+{
+    "footer": {
+        "stayConnected": {
+            "title": "Fique Conectado",
+            "description": "Junte-se à nossa newsletter para as últimas atualizações e ofertas exclusivas.",
+            "form": {
+                "emailLabel": "E-mail",
+                "emailDescription": "Seu email para entrarmos em contato",
+                "subscribe": "Inscrever-se",
+                "placeholder": "exemplo@email.com"
+            }
+        },
+        "quickLinks": {
+            "title": "Links Rápidos",
+            "links": {
+                "home": "Início",
+                "products": "Produtos",
+                "account": "Conta",
+                "faq": "FAQ"
+            }
+        },
+        "logoSection": {
+            "title": "Project",
+            "addressLines": [
+                "project",
+                "project",
+                "project",
+                "project",
+                "project",
+                "project",
+                "project"
+            ]
+        },
+        "followUs": {
+            "title": "Siga-nos",
+            "socials": {
+                "facebook": "Siga-nos no Facebook",
+                "twitter": "Siga-nos no Twitter",
+                "instagram": "Siga-nos no Instagram",
+                "whatsapp": "Conecte-se conosco no WhatsApp"
+            }
+        },
+        "copyright": "© {{year}} Project. Todos os direitos reservados.",
+        "footerLinks": {
+            "privacy": "Política de Privacidade",
+            "terms": "Termos de Serviço",
+            "cookies": "Configurações de Cookies"
+        }
+    },
+    "account": {
+        "appearance": {
+            "title": "Aparência",
+            "description": "Personalize a aparência do aplicativo. Alterne automaticamente entre temas diurno e noturno.",
+            "appearanceForm": {
+                "labels": {
+                    "font": "Fonte",
+                    "theme": "Tema"
+                },
+                "descriptions": {
+                    "font": "Defina a fonte que deseja usar no painel.",
+                    "theme": "Selecione o tema para o painel."
+                },
+                "options": {
+                    "font": {
+                        "geist": "Geist",
+                        "inter": "Inter",
+                        "manrope": "Manrope"
+                    },
+                    "theme": {
+                        "light": "Claro",
+                        "dark": "Escuro"
+                    }
+                },
+                "buttons": {
+                    "update": "Atualizar preferências"
+                },
+                "errors": {
+                    "theme": "Por favor selecione um tema.",
+                    "font": "Por favor selecione uma fonte."
+                }
+            }
+        },
+        "settings": {
+            "title": "Perfil",
+            "description": "Configure sua conta"
+        },
+        "sidenav": {
+            "profile": "Perfil",
+            "salon": "Salão",
+            "apparence": "Aparência",
+            "professionals": "Profissionais",
+            "layout": {
+                "heading": "Configuração",
+                "description": "Configure sua conta da forma que achar melhor"
+            }
+        },
+        "profileForm": {
+            "labels": {
+                "name": "Nome",
+                "dob": "Data de nascimento",
+                "email": "E-mail",
+                "theme": "Tema",
+                "font": "Fonte"
+            },
+            "placeholders": {
+                "name": "seu-nome",
+                "date": "Selecione uma data"
+            },
+            "descriptions": {
+                "name": "Este é seu nome público. Pode ser seu nome real ou um pseudônimo. Você só pode alterar isso a cada 30 dias.",
+                "dob": "Sua data de nascimento é usada para calcular sua idade.",
+                "theme": "Selecione um tema para sua interface.",
+                "font": "Selecione uma fonte para sua interface."
+            },
+            "buttons": {
+                "update": "Atualizar perfil"
+            },
+            "toast": {
+                "title": "Você enviou os seguintes valores:"
+            },
+            "errors": {
+                "name": {
+                    "min": "O nome deve ter pelo menos 2 caracteres.",
+                    "max": "O nome não pode ter mais de 30 caracteres."
+                },
+                "dob": "Uma data de nascimento é obrigatória.",
+                "email": "Por favor selecione um e-mail para exibir.",
+                "theme": "Por favor selecione um tema.",
+                "font": "Por favor selecione uma fonte."
+            }
+        }
+    },
+    "calendar": {
+        "common": {
+            "all": "Todos"
+        },
+        "dayView": {
+            "currentSchedules": {
+                "ongoing": "Em andamento",
+                "empty": "Nenhum agendamento acontecendo neste momento"
+            }
+        },
+        "weekDays": {
+            "sun": "Dom",
+            "mon": "Seg",
+            "tue": "Ter",
+            "wed": "Qua",
+            "thu": "Qui",
+            "fri": "Sex",
+            "sat": "Sáb"
+        },
+        "dialog": {
+            "add": {
+                "title": "Novo Agendamento",
+                "description": "Preencha os detalhes do novo agendamento",
+                "fields": {
+                    "title": {
+                        "label": "Título",
+                        "placeholder": "Título do agendamento"
+                    },
+                    "startDate": {
+                        "label": "Data Inicial",
+                        "placeholder": "Selecione uma data"
+                    },
+                    "endDate": {
+                        "label": "Data Final",
+                        "placeholder": "Selecione uma data"
+                    },
+                    "startTime": {
+                        "label": "Hora Inicial"
+                    },
+                    "endTime": {
+                        "label": "Hora Final"
+                    },
+                    "variant": {
+                        "label": "Cor de Identificação",
+                        "placeholder": "Selecione uma cor",
+                        "options": {
+                            "blue": {
+                                "label": "Azul",
+                                "color": "Azul"
+                            },
+                            "green": {
+                                "label": "Verde",
+                                "color": "Verde"
+                            },
+                            "red": {
+                                "label": "Vermelho",
+                                "color": "Vermelho"
+                            },
+                            "purple": {
+                                "label": "Roxo",
+                                "color": "Roxo"
+                            }
+                        }
+                    },
+                    "description": {
+                        "label": "Descrição",
+                        "placeholder": "Detalhes do agendamento"
+                    }
+                },
+                "buttons": {
+                    "cancel": "Cancelar",
+                    "submit": "Salvar Agendamento"
+                },
+                "validation": {
+                    "required": "Campo obrigatório",
+                    "invalid_time": "Hora inválida",
+                    "time_order": "Hora final deve ser após hora inicial"
+                }
+            },
+            "detail": {
+                "title": "Detalhes do Agendamento",
+                "description": "Detalhes do agendamento",
+                "sections": {
+                    "professional": {
+                        "label": "Profissional"
+                    },
+                    "start": {
+                        "label": "Início"
+                    },
+                    "end": {
+                        "label": "Término"
+                    },
+                    "description": {
+                        "label": "Descrição"
+                    }
+                },
+                "buttons": {
+                    "close": "Fechar"
+                }
+            }
+        }
+    }
+}
