@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-import { endOfDay, format, isSameDay, parseISO, startOfDay } from "date-fns";
+import { endOfDay, isSameDay, parseISO, startOfDay } from "date-fns";
 
 import type { ISchedule } from "@/calendar/interfaces";
 import type { VariantProps } from "class-variance-authority";

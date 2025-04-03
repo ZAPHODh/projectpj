@@ -32,9 +32,6 @@ import { usePathname } from "next/navigation"
 
 function FooterSection() {
     const pathname = usePathname()
-    if (pathname.includes('signin') || pathname.includes('signup')) return null
-
-
     const t = useTranslations('footer')
 
     const form = useForm<z.infer<typeof newsLetterSchema>>({
@@ -47,7 +44,7 @@ function FooterSection() {
     function onSubmit(values: z.infer<typeof newsLetterSchema>) {
         console.log(values)
     }
-
+    if (pathname.includes('signin') || pathname.includes('signup')) return null
     return (
         <footer className="relative border-t bg-background text-foreground transition-colors duration-300 z-50">
             <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
