@@ -1,4 +1,47 @@
 {
+    "financial": {
+        "table": {
+            "selectAll": "Select all",
+            "selectRow": "Select row",
+            "headers": {
+                "description": "Description",
+                "date": "Date",
+                "amount": "Amount",
+                "category": "Category/Method",
+                "category_name": "Category/Method",
+                "type": "Type",
+                "actions": "Actions"
+            },
+            "filter": {
+                "placeholder": "Filter...",
+                "type": "Type",
+                "typeLabel": "Filter by type"
+            },
+            "types": {
+                "inflow": "Inflow",
+                "outflow": "Outflow"
+            },
+            "columns": {
+                "title": "Columns",
+                "label": "Toggle columns"
+            },
+            "actions": {
+                "delete": "Delete",
+                "new": "New Record",
+                "edit": "Edit",
+                "duplicate": "Duplicate",
+                "export": "Export",
+                "archive": "Archive"
+            },
+            "messages": {
+                "noResults": "No records found"
+            },
+            "pagination": {
+                "itemsPerPage": "Items per page",
+                "range": "{from}-{to} of {total}"
+            }
+        }
+    },
     "footer": {
         "stayConnected": {
             "title": "Stay Connected",

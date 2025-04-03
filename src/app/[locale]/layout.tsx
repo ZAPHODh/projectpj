@@ -8,6 +8,7 @@ import { cookies } from 'next/headers';
 import { Inter, Roboto_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme';
 import { FooterSection } from '@/components/ui/footer-section';
+import NavHeader from '@/components/widgets/nav-header';
 
 
 const inter = Inter({
@@ -46,6 +47,7 @@ export default async function LocaleLayout({
                 >
                     <FontProvider defaultFont={font || inter.variable}>
                         <NextIntlClientProvider>
+                            <NavHeader />
                             {children}
                             <FooterSection />
                         </NextIntlClientProvider>

@@ -1,4 +1,47 @@
 {
+    "financial": {
+        "table": {
+            "selectAll": "Selecionar todos",
+            "selectRow": "Selecionar linha",
+            "headers": {
+                "description": "Descrição",
+                "date": "Data",
+                "amount": "Valor",
+                "category": "Categoria/Método",
+                "category_name": "Categoria/Método",
+                "type": "Tipo",
+                "actions": "Ações"
+            },
+            "filter": {
+                "placeholder": "Filtrar...",
+                "type": "Tipo",
+                "typeLabel": "Filtrar por tipo"
+            },
+            "types": {
+                "inflow": "Entrada",
+                "outflow": "Saída"
+            },
+            "columns": {
+                "title": "Colunas",
+                "label": "Alternar colunas"
+            },
+            "actions": {
+                "delete": "Excluir",
+                "new": "Novo Registro",
+                "edit": "Editar",
+                "duplicate": "Duplicar",
+                "export": "Exportar",
+                "archive": "Arquivar"
+            },
+            "messages": {
+                "noResults": "Nenhum registro encontrado"
+            },
+            "pagination": {
+                "itemsPerPage": "Itens por página",
+                "range": "{from}-{to} de {total}"
+            }
+        }
+    },
     "footer": {
         "stayConnected": {
             "title": "Fique Conectado",
@@ -40,7 +83,7 @@
                 "whatsapp": "Conecte-se conosco no WhatsApp"
             }
         },
-        "copyright": "© {{year}} Project. Todos os direitos reservados.",
+        "copyright": "© {year} Project. Todos os direitos reservados.",
         "footerLinks": {
             "privacy": "Política de Privacidade",
             "terms": "Termos de Serviço",
