@@ -1,4 +1,245 @@
 {
+    "form": {
+        "errors": {
+            "invalidType": "Esperado {expected}, recebido {received}",
+            "invalidLiteral": "Valor esperado: {expected}",
+            "unrecognizedKeys": "Chaves não reconhecidas no objeto",
+            "invalidEnumValue": "Valor inválido. Opções válidas: {options}",
+            "invalidUnion": "Valor não corresponde a nenhum formato permitido",
+            "invalidDate": "Data inválida",
+            "invalidString": {
+                "email": "Email inválido",
+                "url": "URL inválida",
+                "uuid": "UUID inválido",
+                "regex": "Formato inválido",
+                "default": "Texto inválido"
+            },
+            "tooSmall": {
+                "string": "Mínimo de {count} caracteres",
+                "number": "Valor mínimo: {minimum}",
+                "array": "Pelo menos {count} itens"
+            },
+            "tooBig": {
+                "string": "Máximo de {count} caracteres",
+                "number": "Valor máximo: {maximum}",
+                "array": "No máximo {count} itens"
+            },
+            "default": "Campo inválido"
+        },
+        "types": {
+            "string": "texto",
+            "number": "número",
+            "boolean": "booleano",
+            "date": "data",
+            "undefined": "vazio",
+            "null": "nulo"
+        }
+    },
+    "notfound": {
+        "title": "Página não encontrada",
+        "description": "Desculpe, a página que você está procurando não existe.",
+        "back": "Voltar",
+        "home": "Me leve para a página inicial"
+    },
+    "auth": {
+        "signin": {
+            "welcome": "Bem vindo novamente!",
+            "description": "Preencha seus dados para fazer login em nossa página.",
+            "social": "Entrar com o {provider}",
+            "form": {
+                "email": {
+                    "label": "Email",
+                    "placeholder": "youremail@gmail.com",
+                    "description": "Digite seu Email"
+                },
+                "password": {
+                    "label": "Senha",
+                    "placeholder": "sua senha",
+                    "description": "Digite sua senha"
+                }
+            },
+            "submit": "Entrar",
+            "noAccount": "Ainda não tem uma conta?",
+            "createAccount": "Criar",
+            "error": {
+                "title": "Infelizmente não foi possível logar",
+                "description": "Usuário ou senha inválido"
+            }
+        },
+        "signup": {
+            "title": "Crie sua conta",
+            "description": "Preencha seus dados para se registrar em nossa página.",
+            "form": {
+                "name": {
+                    "label": "Nome Completo",
+                    "placeholder": "e.g. Luis Paulo",
+                    "description": "Digite seu nome"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "luispaulo@gmail.com",
+                    "description": "Digite seu Email"
+                },
+                "password": {
+                    "label": "Senha",
+                    "placeholder": "Digite sua senha aqui.",
+                    "description": "Digite sua senha"
+                }
+            },
+            "social": "Registrar com o {provider}",
+            "submit": "Registrar",
+            "hasAccount": "Já tem uma conta?",
+            "login": "Faça login",
+            "terms": "Ao registrar, você concorda com os nossos Termos de uso",
+            "error": {
+                "title": "Infelizmente não foi possível fazer o registro",
+                "description": "Verifique se o email já está cadastrado ou se a senha é válida."
+            }
+        },
+        "footer": {
+            "terms": "Termos & Condições",
+            "privacy": "Política de Privacidade",
+            "license": "Licença",
+            "refund": "Política de Reembolso"
+        }
+    },
+    "hero": {
+        "brand": "PROJECT",
+        "heading": {
+            "part1": "A gestão do seu salão ficou"
+        },
+        "titles": {
+            "title1": "eficiente",
+            "title2": "moderno",
+            "title3": "inteligente",
+            "title4": "prático",
+            "title5": "completo"
+        },
+        "heroDescription": "Esqueça a papelada e o controle manual...",
+        "buttons": {
+            "contact": "Fale conosco",
+            "trial": "Teste agora"
+        },
+        "heroFeatures": {
+            "cashSystem": {
+                "title": "Sistema de Caixa",
+                "description": "Gerencie o fluxo de caixa, controle vendas diárias e faça o fechamento do caixa com segurança."
+            },
+            "scheduling": {
+                "title": "Agendamentos Simplificados",
+                "description": "Gerencie os horários do seu salão sem complicação. Agendamentos online e controle total na palma da sua mão."
+            },
+            "payments": {
+                "title": "Pagamentos Facilitados",
+                "description": "Aceite pagamentos por Pix, cartão e dinheiro. Controle suas finanças com facilidade."
+            },
+            "reports": {
+                "title": "Relatórios e Estatísticas",
+                "description": "Acompanhe o faturamento, despesas e crescimento do seu salão com gráficos detalhados."
+            },
+            "clients": {
+                "title": "Gestão de Clientes",
+                "description": "Histórico de clientes, preferências e notificações automáticas para um atendimento personalizado."
+            },
+            "services": {
+                "title": "Catálogo de Serviços",
+                "description": "Organize seus serviços, valores e durações para uma experiência profissional."
+            },
+            "support": {
+                "title": "Suporte 24/7",
+                "description": "Nossa equipe está disponível para te ajudar sempre que precisar."
+            },
+            "experience": {
+                "title": "Experiência Premium",
+                "description": "Destaque-se da concorrência com um sistema completo e fácil de usar."
+            }
+        },
+        "heroParallax": {
+            "title": "Você",
+            "subtitle": "No controle",
+            "description": "Dezenas de ferramentas para você ter o controle de tudo que acontece no seu salão."
+        },
+        "products": {
+            "dailyEntry": "Lançamento diário",
+            "dashboard": "Dashboard",
+            "configure": "Configure",
+            "scheduling": "Agendamento"
+        },
+        "title": "Nos conheça melhor",
+        "description": "Um sistema completo para donos de salões de beleza: controle de caixa, gestão de comissões, taxas de pagamento, despesas e análise de lucratividade, tudo em um só lugar.",
+        "features": {
+            "title": "O Que Nosso Sistema Faz?",
+            "description": "Controle todas as finanças do seu salão em tempo real: registre entradas e saídas, visualize relatórios detalhados e aumente a rentabilidade do seu negócio com dados precisos.",
+            "button": "Veja como funciona"
+        },
+        "results": {
+            "title": "Resultados Comprovados",
+            "description": "Nosso sistema simplifica a gestão do salão e melhora a organização financeira, ajudando proprietários a tomarem decisões estratégicas para aumentar os lucros."
+        },
+        "stats": {
+            "salons": {
+                "label": "Salões Utilizando"
+            },
+            "transactions": {
+                "label": "Transações Processadas"
+            },
+            "satisfaction": {
+                "label": "Taxa de Satisfação"
+            },
+            "years": {
+                "label": "Anos no Mercado"
+            }
+        },
+        "images": {
+            "monthly": "Agendamento mensal",
+            "financialControl": "Controle financeiro",
+            "logo": "Logo do sistema"
+        },
+        "pricing": {
+            "plans": {
+                "free": {
+                    "name": "Free"
+                },
+                "pro": {
+                    "name": "Pro"
+                },
+                "enterprise": {
+                    "name": "Enterprise"
+                }
+            },
+            "featureItem": {
+                "clientRegistration": "Cadastro de clientes",
+                "serviceHistory": "Histórico de atendimentos",
+                "basicReports": "Relatórios básicos",
+                "faqSupport": "Suporte via FAQ e tutoriais",
+                "scheduling": "Agendamento de clientes",
+                "profileCustomization": "Personalização do perfil do salão",
+                "emailSupport": "Suporte via e-mail",
+                "cashManagement": "Gestão de caixa",
+                "expenseTracking": "Lançamentos diários de despesas",
+                "detailedReports": "Relatórios financeiros detalhados",
+                "commissionManagement": "Gestão de comissões de profissionais",
+                "autoFees": "Taxas de cartão e Pix automáticas",
+                "prioritySupport": "Suporte prioritário via WhatsApp",
+                "paymentIntegration": "Integração com sistemas de pagamento",
+                "advancedFinancial": "Controle financeiro avançado",
+                "multiUserAccess": "Acesso multiusuário com permissões",
+                "247Support": "Suporte 24/7 via telefone"
+            },
+            "interval": {
+                "monthly": "Mensal",
+                "yearly": "Anual"
+            },
+            "badges": {
+                "popular": "Popular"
+            },
+            "features": "Recursos",
+            "cta": "Começar com {plan}",
+            "currency": {
+                "code": "BRL"
+            }
+        }
+    },
     "financial": {
         "table": {
             "selectAll": "Selecionar todos",

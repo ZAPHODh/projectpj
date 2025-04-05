@@ -9,6 +9,9 @@ import { Inter, Roboto_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme';
 import { FooterSection } from '@/components/ui/footer-section';
 import NavHeader from '@/components/widgets/nav-header';
+import { getServerSession } from '@/lib/auth/server-session';
+import SessionProvider from '@/components/providers/session';
+import { ZodProvider } from '@/components/providers/zodI18n';
 
 
 const inter = Inter({
@@ -29,6 +32,7 @@ export default async function LocaleLayout({
     children: React.ReactNode;
     params: Promise<{ locale: string }>;
 }) {
+    const session = await getServerSession();
     const cookieStore = await cookies()
     const font = cookieStore.get('font')?.value
     const { locale } = await params;
@@ -39,22 +43,28 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
             <body>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <FontProvider defaultFont={font || inter.variable}>
-                        <NextIntlClientProvider>
-                            <NavHeader />
-                            {children}
-                            <FooterSection />
-                        </NextIntlClientProvider>
-                        <Toaster />
-                    </FontProvider>
-                </ThemeProvider>
+                <SessionProvider initialSession={session}>
+
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <FontProvider defaultFont={font || inter.variable}>
+                            <NextIntlClientProvider>
+                                <ZodProvider>
+                                    <NavHeader />
+                                    {children}
+                                    <FooterSection />
+                                </ZodProvider>
+                            </NextIntlClientProvider>
+                            <Toaster />
+                        </FontProvider>
+                    </ThemeProvider>
+
+                </SessionProvider>
             </body>
-        </html>
+        </html >
     );
 }

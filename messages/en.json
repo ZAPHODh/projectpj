@@ -1,4 +1,245 @@
 {
+    "form": {
+        "errors": {
+            "invalidType": "Expected {expected}, received {received}",
+            "invalidLiteral": "Expected value: {expected}",
+            "unrecognizedKeys": "Unrecognized keys in the object",
+            "invalidEnumValue": "Invalid value. Valid options: {options}",
+            "invalidUnion": "Value does not match any allowed format",
+            "invalidDate": "Invalid date",
+            "invalidString": {
+                "email": "Invalid email",
+                "url": "Invalid URL",
+                "uuid": "Invalid UUID",
+                "regex": "Invalid format",
+                "default": "Invalid text"
+            },
+            "tooSmall": {
+                "string": "Minimum {count} characters",
+                "number": "Minimum value: {minimum}",
+                "array": "At least {count} items"
+            },
+            "tooBig": {
+                "string": "Maximum {count} characters",
+                "number": "Maximum value: {maximum}",
+                "array": "At most {count} items"
+            },
+            "default": "Invalid field"
+        },
+        "types": {
+            "string": "string",
+            "number": "number",
+            "boolean": "boolean",
+            "date": "date",
+            "undefined": "empty",
+            "null": "null"
+        }
+    },
+    "notfound": {
+        "title": "Page not found",
+        "description": "Sorry, the page you are looking for does not exist.",
+        "back": "Go Back",
+        "home": "Take mehome"
+    },
+    "auth": {
+        "signin": {
+            "welcome": "Welcome back!",
+            "description": "Fill in your details to log in to our page.",
+            "social": "Sign in with {provider}",
+            "form": {
+                "email": {
+                    "label": "Email",
+                    "placeholder": "youremail@gmail.com",
+                    "description": "Enter your email"
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "your password",
+                    "description": "Enter your password"
+                }
+            },
+            "submit": "Sign In",
+            "noAccount": "Don't have an account yet?",
+            "createAccount": "Create",
+            "error": {
+                "title": "Unable to log in",
+                "description": "Invalid username or password"
+            }
+        },
+        "signup": {
+            "title": "Create your account",
+            "description": "Fill in your details to register on our page.",
+            "form": {
+                "name": {
+                    "label": "Full Name",
+                    "placeholder": "e.g. John Doe",
+                    "description": "Enter your name"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "john.doe@gmail.com",
+                    "description": "Enter your email"
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter your password here",
+                    "description": "Enter your password"
+                }
+            },
+            "social": "Sign up with {provider}",
+            "submit": "Sign Up",
+            "hasAccount": "Already have an account?",
+            "login": "Login",
+            "terms": "By registering, you agree to our Terms of Use",
+            "error": {
+                "title": "Registration failed",
+                "description": "Please check if email is already registered or password is valid"
+            }
+        },
+        "footer": {
+            "terms": "Terms & Conditions",
+            "privacy": "Privacy Policy",
+            "license": "License",
+            "refund": "Refund Policy"
+        }
+    },
+    "hero": {
+        "brand": "PROJECT",
+        "heading": {
+            "part1": "Your salon management just got"
+        },
+        "titles": {
+            "title1": "efficient",
+            "title2": "modern",
+            "title3": "smart",
+            "title4": "practical",
+            "title5": "complete"
+        },
+        "heroDescription": "Forget paperwork and manual control...",
+        "buttons": {
+            "contact": "Contact us",
+            "trial": "Try now"
+        },
+        "heroFeatures": {
+            "cashSystem": {
+                "title": "Cash System",
+                "description": "Manage cash flow, control daily sales, and securely close the cash register."
+            },
+            "scheduling": {
+                "title": "Simplified Scheduling",
+                "description": "Effortlessly manage your salon's schedule with online bookings and full control at your fingertips."
+            },
+            "payments": {
+                "title": "Easy Payments",
+                "description": "Accept payments via Pix, credit card, and cash. Manage your finances with ease."
+            },
+            "reports": {
+                "title": "Reports & Statistics",
+                "description": "Track your salon's revenue, expenses, and growth with detailed charts."
+            },
+            "clients": {
+                "title": "Client Management",
+                "description": "Client history, preferences, and automatic notifications for personalized service."
+            },
+            "services": {
+                "title": "Service Catalog",
+                "description": "Organize your services, prices, and durations for a professional experience."
+            },
+            "support": {
+                "title": "24/7 Support",
+                "description": "Our team is available to help you whenever you need."
+            },
+            "experience": {
+                "title": "Premium Experience",
+                "description": "Stand out from the competition with a complete and easy-to-use system."
+            }
+        },
+        "heroParallax": {
+            "title": "You",
+            "subtitle": "In Control",
+            "description": "Dozens of tools for you to control everything that happens in your salon."
+        },
+        "products": {
+            "dailyEntry": "Daily Entry",
+            "dashboard": "Dashboard",
+            "configure": "Configure",
+            "scheduling": "Scheduling"
+        },
+        "pricing": {
+            "plans": {
+                "free": {
+                    "name": "Free"
+                },
+                "pro": {
+                    "name": "Pro"
+                },
+                "enterprise": {
+                    "name": "Enterprise"
+                }
+            },
+            "featureItem": {
+                "clientRegistration": "Customer registration",
+                "serviceHistory": "Service history",
+                "basicReports": "Basic reports",
+                "faqSupport": "FAQ and tutorial support",
+                "scheduling": "Customer scheduling",
+                "profileCustomization": "Salon profile customization",
+                "emailSupport": "Email support",
+                "cashManagement": "Cash management",
+                "expenseTracking": "Daily expense tracking",
+                "detailedReports": "Detailed financial reports",
+                "commissionManagement": "Professional commissions management",
+                "autoFees": "Automatic card and Pix fees",
+                "prioritySupport": "Priority WhatsApp support",
+                "paymentIntegration": "Payment system integration",
+                "advancedFinancial": "Advanced financial control",
+                "multiUserAccess": "Multi-user access with permissions",
+                "247Support": "24/7 phone support"
+            },
+            "interval": {
+                "monthly": "Monthly",
+                "yearly": "Yearly"
+            },
+            "badges": {
+                "popular": "Popular"
+            },
+            "features": "Features",
+            "cta": "Get started with {plan}",
+            "currency": {
+                "code": "USD"
+            }
+        },
+        "title": "Get to Know Us Better",
+        "description": "A complete system for beauty salon owners: cash control, commission management, payment fees, expenses and profitability analysis, all in one place.",
+        "features": {
+            "title": "What Our System Does",
+            "description": "Control all your salon's finances in real time: record income and expenses, view detailed reports, and increase your business profitability with accurate data.",
+            "button": "See how it works"
+        },
+        "results": {
+            "title": "Proven Results",
+            "description": "Our system simplifies salon management and improves financial organization, helping owners make strategic decisions to increase profits."
+        },
+        "stats": {
+            "salons": {
+                "label": "Salons Using"
+            },
+            "transactions": {
+                "label": "Transactions Processed"
+            },
+            "satisfaction": {
+                "label": "Satisfaction Rate"
+            },
+            "years": {
+                "label": "Years in the Market"
+            }
+        },
+        "images": {
+            "monthly": "Monthly scheduling",
+            "financialControl": "Financial control",
+            "logo": "System logo"
+        }
+    },
     "financial": {
         "table": {
             "selectAll": "Select all",

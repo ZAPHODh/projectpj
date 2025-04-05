@@ -27,12 +27,18 @@ import { Separator } from "@/components/ui/separator";
 import { Apple } from "lucide-react";
 
 import { signupSchema } from "@/schemas/signup";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { useSession } from "../providers/session";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 function SignUp({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+    const t = useTranslations('auth.signup');
+    const { setSession } = useSession();
+    const router = useRouter();
     const form = useForm<z.infer<typeof signupSchema>>({
         resolver: zodResolver(signupSchema),
         defaultValues: {
@@ -42,17 +48,37 @@ function SignUp({
         },
     });
 
-    function onSubmit(values: z.infer<typeof signupSchema>) {
-        console.log(values);
+    async function onSubmit(values: z.infer<typeof signupSchema>) {
+        const res = await fetch(`/api/auth/credentials-register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: values.name,
+                email: values.email,
+                password: values.password,
+            }),
+        });
+
+        const session = await res.json();
+
+        if (!res.ok) {
+            toast(t('error.title'), { description: t('error.description') });
+            return;
+        }
+
+        router.push("/");
+
     }
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card className="shadow-none border-none">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Crie sua conta</CardTitle>
+                    <CardTitle className="text-2xl">{t('title')}</CardTitle>
                     <CardDescription>
-                        Preencha seus dados para se registrar em nossa página.
+                        {t('description')}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -66,11 +92,11 @@ function SignUp({
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Nome Completo</FormLabel>
+                                        <FormLabel>{t('form.name.label')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="e.g. Luis Paulo" {...field} />
+                                            <Input placeholder={t('form.name.placeholder')} {...field} />
                                         </FormControl>
-                                        <FormDescription>Digite seu nome</FormDescription>
+                                        <FormDescription>{t('form.name.description')}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -80,11 +106,11 @@ function SignUp({
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel>{t('form.email.label')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="luispaulo@gmail.com" {...field} />
+                                            <Input placeholder={t('form.email.placeholder')} {...field} />
                                         </FormControl>
-                                        <FormDescription>Digite seu Email</FormDescription>
+                                        <FormDescription>{t('form.email.description')}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -94,15 +120,15 @@ function SignUp({
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Senha</FormLabel>
+                                        <FormLabel>{t('form.password.label')}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="password"
-                                                placeholder="Digite sua senha aqui."
+                                                placeholder={t('form.password.placeholder')}
                                                 {...field}
                                             />
                                         </FormControl>
-                                        <FormDescription>Digite sua senha</FormDescription>
+                                        <FormDescription>{t('form.password.description')}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -127,25 +153,26 @@ function SignUp({
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                    Registrar com o Google
+                                    {t('social', { provider: "Google" })}
                                 </Button>
                                 <Button variant="outline" className="w-full my-2 rounded">
-                                    <Apple /> Registrar com a Apple
+                                    <Apple />
+                                    {t('social', { provider: "Apple" })}
                                 </Button>
                             </div>
                             <Separator />
                             <Button type="submit" className="w-full rounded">
-                                Registrar
+                                {t('submit')}
                             </Button>
                         </form>
                     </Form>
                     <div className="mt-4 text-center text-xs p-0 m-0">
-                        Já tem uma conta?{" "}
+                        {t('hasAccount')}{" "}
                         <Link href="/signin" className="underline underline-offset-4">
-                            Faça login
+                            {t('login')}
                         </Link>
                         <div className="mt-4 text-center text-xs p-0 m-0">
-                            Ao registrar, voce concorda com os nossos Termos de uso
+                            {t('terms')}
                         </div>
                     </div>
                 </CardContent>

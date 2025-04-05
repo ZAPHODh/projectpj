@@ -1,4 +1,4 @@
-import { MainNav } from "@/components/finance/dashboard/main-nav";
+
 import { AppSidebar } from "@/components/finance/navigation/app-sidebar";
 import { SiteHeader } from "@/components/finance/navigation/header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
