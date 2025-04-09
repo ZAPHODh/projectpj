@@ -44,7 +44,6 @@ export default async function LocaleLayout({
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
             <body>
                 <SessionProvider initialSession={session}>
-
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="system"

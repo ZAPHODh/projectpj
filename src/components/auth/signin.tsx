@@ -146,7 +146,7 @@ function SignIn({
                     </Form>
                     <div className="mt-4 text-center text-sm">
                         {t('noAccount')}{" "}
-                        <Link href="/signup" className="underline underline-offset-4">
+                        <Link href="/auth/signup" className="underline underline-offset-4">
                             {t('createAccount')}
                         </Link>
                     </div>

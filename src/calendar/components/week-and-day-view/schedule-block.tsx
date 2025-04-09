@@ -51,7 +51,7 @@ export function ScheduleBlock({ schedule, className }: IProps) {
     console.log(color)
     const calendarWeekScheduleCardClasses = cn(
         calendarWeekScheduleCardVariants({ color, className }),
-        durationInMinutes < 35 && "py-0 justify-center hover:cursor-pointer"
+        durationInMinutes < 35 && "py-0 justify-center "
     );
 
     return (

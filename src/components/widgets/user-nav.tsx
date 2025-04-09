@@ -5,11 +5,42 @@ import { useRouter } from "@/i18n/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { useSession } from "../providers/session";
+import { useEffect } from "react";
 
 
 export function UserNav() {
+    const { session, logout } = useSession()
     const router = useRouter()
 
+    useEffect(() => {
+        const down = (e: KeyboardEvent) => {
+            if (e.key === "p" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault()
+                router.push('/account')
+            }
+            if (e.key === "b" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault()
+                router.push('/account/professionals')
+            }
+            if (e.key === "s" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault()
+                router.push('/account/plan')
+            }
+            if (e.key === "q" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault()
+                logout()
+            }
+        }
+        document.addEventListener("keydown", down)
+        return () => document.removeEventListener("keydown", down)
+    }, [])
+
+    if (!session) return (
+        <Button>
+            Sign In
+        </Button>
+    )
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -23,9 +54,9 @@ export function UserNav() {
             <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">shadcn</p>
+                        <p className="text-sm font-medium leading-none">{session.user.name}</p>
                         <p className="text-xs leading-none text-muted-foreground">
-                            m@example.com
+                            {session.email}
                         </p>
                     </div>
                 </DropdownMenuLabel>
@@ -33,22 +64,21 @@ export function UserNav() {
                 <DropdownMenuGroup>
                     <DropdownMenuItem onClick={() => router.push('/account')}>
                         Profile
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        <DropdownMenuShortcut>⇧P</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        Billing
-                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                        Professionals
+                        <DropdownMenuShortcut>⇧B</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        Settings
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                        Plan
+                        <DropdownMenuShortcut>⇧S</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>New Team</DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                     Log out
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

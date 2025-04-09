@@ -145,7 +145,6 @@ export function AppearanceForm() {
                         </FormItem>
                     )}
                 />
-
                 <Button type="submit">{t('buttons.update')}</Button>
             </form>
         </Form>

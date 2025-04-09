@@ -31,8 +31,8 @@ export default function Page(props: { children: React.ReactNode }) {
             </div>
             <div className="relative hidden lg:block flex flex-col bg-black">
                 <div className="relative z-10 h-full flex flex-col">
-                    <div className="w-full flex flex-col items-center justify-center w-full">
-                        <h1 className="text-5xl font-extrabold text-white mb-4">
+                    <div className="w-full flex flex-col items-center justify-center">
+                        <h1 className="text-3xl font-extrabold text-white mb-4">
                             Welcome to PROJECT
                         </h1>
                     </div>

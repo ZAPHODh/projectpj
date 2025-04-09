@@ -24,7 +24,6 @@ export function CalendarProvider({ children, professionals, schedules }: { child
     const [selectedProfessionalId, setSelectedProfessionalId] = useState<IProfessional["id"] | "all">("all");
 
     const handleSelectDate = (date: Date | undefined) => {
-        console.log(date)
         if (!date) return;
         setSelectedDate(date);
     };
