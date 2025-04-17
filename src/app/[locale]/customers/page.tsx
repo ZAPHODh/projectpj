@@ -1,0 +1,63 @@
+'use client';
+
+
+
+import { getCustomerColumns } from "@/components/customers/column";
+import { CustomerDialog } from "@/components/customers/dialog";
+import { DataTable } from "@/components/ui/data-table/table";
+import { createCustomerSchema, defaultCustomerValues, GetCustomerConfig } from "@/schemas/customers";
+
+import { useLocale, useMessages } from "next-intl";
+import { useState } from "react";
+
+const customerMock: Customer = {
+    id: "c1d2e3f4-g5h6-i7j8-k9l0-m1n2o3p4q5r6",
+    name: "João Souza",
+    city: "São Paulo",
+    address: "Rua Exemplo, 123",
+    genre: "male",
+    phone: "(11) 91234-5678",
+    email: "joao.souza@exemplo.com",
+    birthDay: new Date("1990-01-01"),
+    salonId: "s1a2b3c4-d5e6-f7g8-h9i0",
+};
+
+export default function CustomerPage() {
+    const [selectedRowData, setSelectedRowData] = useState<Customer | null>(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const locale = useLocale();
+    const messages = useMessages();
+
+    return (
+        <div className="space-y-6 container mx-auto">
+            <div className="p-4">
+                <h3 className="text-lg font-medium">Customers</h3>
+                <p className="text-sm text-muted-foreground">
+                    Gerencie os dados dos seus customers.
+                </p>
+            </div>
+            <DataTable
+                data={[customerMock]}
+                columns={getCustomerColumns(locale, messages)}
+                exportTo
+                newItem={{
+                    defaultValues: defaultCustomerValues,
+                    fieldConfig: GetCustomerConfig(locale, messages),
+                    schema: createCustomerSchema,
+                }}
+                onNewItem={() => {
+                    // Lógica para criar um novo customer
+                }}
+                handleRowClick={(row) => {
+                    setSelectedRowData(row);
+                    setIsDialogOpen(true);
+                }}
+            />
+            <CustomerDialog
+                isDialogOpen={isDialogOpen}
+                setIsDialogOpen={setIsDialogOpen}
+                selectedRowData={selectedRowData}
+            />
+        </div>
+    );
+}

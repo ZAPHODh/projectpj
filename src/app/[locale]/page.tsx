@@ -5,6 +5,8 @@ import { HeroBackground } from "@/components/widgets/hero-background";
 import { HeroPricing } from "@/components/widgets/hero-pricing";
 
 
+
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-full">

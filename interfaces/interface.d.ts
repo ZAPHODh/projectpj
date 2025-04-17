@@ -1,7 +1,7 @@
 // Tipos auxiliares
 type TransactionType = 'income' | 'expense';
 type InventoryMovementType = 'entry' | 'exit' | 'adjustment';
-type AppointmentStatus = 'scheduled' | 'completed' | 'canceled';
+type AppointmentStatus = 'CONFIRMED' | 'COMPLETED' | 'CANCELLED' | 'RESCHEDULED' | 'SCHEDULED';
 type CashRegisterStatus = 'open' | 'closed' | 'reconciled';
 type CommissionType = 'percentage' | 'fixed';
 
@@ -61,13 +61,14 @@ interface Professional {
     phone?: string;
     email?: string;
     salonId: string;
-    salon: Salon;
+    salon?: Salon;
     services: Service[];
     commissions: Commission[];
     appointments: Appointment[];
     userRoles: UserRole[];
-    transactions: Transaction[];
-    commissionRules: CommissionRule[];
+    transactions?: Transaction[];
+    comissionRuleId: string;
+    commissionRule?: CommissionRule;
 }
 
 interface Customer {
@@ -80,11 +81,11 @@ interface Customer {
     email?: string;
     birthDay?: Date;
     salonId: string;
-    salon: Salon;
-    sales: Sale[];
-    appointments: Appointment[];
-    services: Service[];
-    transactions: Transaction[];
+    salon?: Salon;
+    sales?: Sale[];
+    appointments?: Appointment[];
+    services?: Service[];
+    transactions?: Transaction[];
 }
 
 interface Sale {

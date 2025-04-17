@@ -1,4 +1,189 @@
 {
+    "customer": {
+        "dialog": {
+            "title": "Customer Details",
+            "description": "Manage customer information",
+            "tabs": {
+                "services": "Service",
+                "appointments": "Appointments",
+                "edit": "Edit",
+                "services_table": {
+                    "name": "Name",
+                    "price": "Price",
+                    "duration": "Duration",
+                    "created_at": "Created At",
+                    "empty": "No services found"
+                },
+                "appointments_table": {
+                    "date": "Date",
+                    "service": "Service",
+                    "professional": "Professional",
+                    "status": "Status",
+                    "notes": "Notes",
+                    "empty": "No appointments found"
+                }
+            },
+            "appointment_status": {
+                "completed": "Completed",
+                "scheduled": "Scheduled",
+                "canceled": "Canceled"
+            },
+            "serviceDate": "Service Date",
+            "serviceType": "Service",
+            "appointmentDate": "Date",
+            "professional": "Professional",
+            "status": "Status",
+            "price": "Price",
+            "duration": "Duration",
+            "salon": "Salon",
+            "notes": "Notes",
+            "currency": {
+                "code": "USD",
+                "symbol": "$"
+            },
+            "common": {
+                "none": "None",
+                "cancel": "Cancel",
+                "save": "Save",
+                "minutes": "minutes"
+            }
+        },
+        "name": "Name",
+        "city": "City",
+        "email": "Email",
+        "phone": "Phone",
+        "inputConfig": {
+            "name": {
+                "label": "Name",
+                "placeholder": "Enter the customer's name",
+                "description": "Please provide the full name of the customer"
+            },
+            "city": {
+                "label": "City",
+                "placeholder": "Enter the city",
+                "description": "City where the customer resides"
+            },
+            "address": {
+                "label": "Address",
+                "placeholder": "Enter the address",
+                "description": "Customer's address"
+            },
+            "genre": {
+                "label": "Gender",
+                "placeholder": "Select the gender",
+                "description": "Please select the customer's gender",
+                "options": {
+                    "male": "Male",
+                    "female": "Female",
+                    "other": "Other"
+                }
+            },
+            "phone": {
+                "label": "Phone",
+                "placeholder": "Enter the phone number",
+                "description": "Customer's phone number"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter the email address",
+                "description": "Customer's email address"
+            },
+            "birthDay": {
+                "label": "Birth Date",
+                "placeholder": "Select the birth date",
+                "description": "Customer's birth date"
+            },
+            "salonId": {
+                "label": "Salon ID",
+                "placeholder": "Enter the salon ID",
+                "description": "Identifier of the salon"
+            }
+        }
+    },
+    "table": {
+        "view": "View",
+        "search": "Search",
+        "edit": "Edit",
+        "export": "Export",
+        "sheetForm": {
+            "create": "Create",
+            "description": "Fill in the form below"
+        },
+        "viewOptions": {
+            "view": "View",
+            "toggleColumns": "Toggle columns"
+        },
+        "dataTable": {
+            "error": {
+                "exportNoSelection": "Error exporting",
+                "exportNoSelectionDesc": "You need to select the items you want to export.",
+                "exportGeneric": "Error exporting",
+                "exportGenericDesc": "There was a problem exporting"
+            },
+            "search": {
+                "placeholder": "Search..."
+            },
+            "addButton": "Add {name}",
+            "form": {
+                "title": "Form to create a {name}",
+                "defaultTitle": "Form"
+            },
+            "noResults": "No results.",
+            "print": {
+                "noSelection": "No items selected"
+            }
+        }
+    },
+    "professional": {
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "category": "Category",
+        "commission": "Commission",
+        "inputConfig": {
+            "name": {
+                "label": "Name",
+                "placeholder": "Enter name",
+                "description": "Full name of the professional"
+            },
+            "category": {
+                "label": "Category",
+                "placeholder": "Select category",
+                "description": "Professional's work area",
+                "options": {
+                    "hair": "Hair",
+                    "nail": "Nail"
+                }
+            },
+            "cpf": {
+                "label": "CPF",
+                "placeholder": "Enter CPF",
+                "description": "Cadastro de Pessoa Física (optional)"
+            },
+            "phone": {
+                "label": "Phone",
+                "placeholder": "Enter phone number",
+                "description": "Contact phone number (optional)"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter email",
+                "description": "Email address (optional)"
+            },
+            "commissionRules": {
+                "label": "Commission Rules",
+                "placeholder": "Add commission rules",
+                "description": "Define the commission rules for this professional"
+            }
+        }
+    },
+    "header": {
+        "finance": "Finance",
+        "professionals": "Professionals",
+        "customers": "Customers",
+        "schedule": "Schedule",
+        "signin": "Sign in"
+    },
     "form": {
         "errors": {
             "invalidType": "Expected {expected}, received {received}",

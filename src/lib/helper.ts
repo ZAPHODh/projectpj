@@ -1,6 +1,7 @@
-import { enUS, pt, ptBR } from "date-fns/locale";
+import { enUS, pt, ptBR, zhCN } from "date-fns/locale";
 import { format, Locale } from "date-fns";
 const locales: Record<string, Locale> = {
+    zh: zhCN,
     en: enUS,
     pt,
     br: ptBR

@@ -19,19 +19,19 @@ export function MainNav({
                 Overview
             </Link>
             <Link
-                href="/finance"
+                href="/finance/customers"
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
                 Customers
             </Link>
             <Link
-                href="/finance"
+                href="/finance/professionals"
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-                Products
+                Professionals
             </Link>
             <Link
-                href="/finance/daily"
+                href="/finance/settings"
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
                 Settings

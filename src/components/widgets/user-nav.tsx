@@ -1,16 +1,18 @@
 'use client';
 
 
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useSession } from "../providers/session";
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 
 export function UserNav() {
     const { session, logout } = useSession()
+    const t = useTranslations('header')
     const router = useRouter()
 
     useEffect(() => {
@@ -38,7 +40,9 @@ export function UserNav() {
 
     if (!session) return (
         <Button>
-            Sign In
+            <Link href={"/auth/signin"} >
+                {t('signin')}
+            </Link>
         </Button>
     )
     return (

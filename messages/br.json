@@ -1,4 +1,190 @@
 {
+    "customer": {
+        "dialog": {
+            "title": "Detalhes do Cliente",
+            "description": "Gerencie as informações do cliente",
+            "tabs": {
+                "services": "Serviços",
+                "appointments": "Agendamentos",
+                "edit": "Editar",
+                "services_table": {
+                    "name": "Nome",
+                    "price": "Preço",
+                    "duration": "Duração",
+                    "created_at": "Criado em",
+                    "empty": "Nenhum serviço encontrado"
+                },
+                "appointments_table": {
+                    "date": "Data",
+                    "service": "Serviço",
+                    "professional": "Profissional",
+                    "status": "Status",
+                    "notes": "Observações",
+                    "empty": "Nenhum agendamento encontrado"
+                }
+            },
+            "appointment_status": {
+                "completed": "Concluído",
+                "scheduled": "Agendado",
+                "canceled": "Cancelado"
+            },
+            "serviceDate": "Data do Serviço",
+            "serviceType": "Serviço",
+            "appointmentDate": "Data",
+            "professional": "Profissional",
+            "status": "Status",
+            "price": "Preço",
+            "duration": "Duração",
+            "salon": "Salão",
+            "notes": "Observações",
+            "currency": {
+                "code": "BRL",
+                "symbol": "R$"
+            },
+            "common": {
+                "none": "Nenhum",
+                "cancel": "Cancelar",
+                "save": "Salvar",
+                "minutes": "minutos"
+            }
+        },
+        "name": "Nome",
+        "city": "Cidade",
+        "email": "E-mail",
+        "phone": "Telefone",
+        "inputConfig": {
+            "name": {
+                "label": "Nome",
+                "placeholder": "Digite o nome do cliente",
+                "description": "Informe o nome completo do cliente"
+            },
+            "city": {
+                "label": "Cidade",
+                "placeholder": "Digite a cidade",
+                "description": "Cidade onde o cliente reside"
+            },
+            "address": {
+                "label": "Endereço",
+                "placeholder": "Digite o endereço",
+                "description": "Endereço do cliente"
+            },
+            "genre": {
+                "label": "Gênero",
+                "placeholder": "Selecione o gênero",
+                "description": "Por favor, selecione o gênero do cliente",
+                "options": {
+                    "male": "Masculino",
+                    "female": "Feminino",
+                    "other": "Outro"
+                }
+            },
+            "phone": {
+                "label": "Telefone",
+                "placeholder": "Digite o número de telefone",
+                "description": "Número de telefone do cliente"
+            },
+            "email": {
+                "label": "E-mail",
+                "placeholder": "Digite o endereço de e-mail",
+                "description": "Endereço de e-mail do cliente"
+            },
+            "birthDay": {
+                "label": "Data de Nascimento",
+                "placeholder": "Selecione a data de nascimento",
+                "description": "Data de nascimento do cliente"
+            },
+            "salonId": {
+                "label": "ID do Salão",
+                "placeholder": "Digite o ID do salão",
+                "description": "Identificador do salão"
+            }
+        }
+    },
+    "table": {
+        "create": "Criar",
+        "view": "Visualizar",
+        "search": "Pesquisar",
+        "edit": "Editar",
+        "export": "Exportar",
+        "sheetForm": {
+            "create": "Criar",
+            "description": "Preencha o formulário abaixo"
+        },
+        "viewOptions": {
+            "view": "Visualizar",
+            "toggleColumns": "Alternar colunas"
+        },
+        "dataTable": {
+            "error": {
+                "exportNoSelection": "Erro ao exportar",
+                "exportNoSelectionDesc": "Você precisa selecionar os itens que você quer exportar.",
+                "exportGeneric": "Erro ao exportar",
+                "exportGenericDesc": "Houve um problema ao exportar"
+            },
+            "search": {
+                "placeholder": "Pesquisar..."
+            },
+            "addButton": "Adicionar {name}",
+            "form": {
+                "title": "Formulário para criar um(a) {name}",
+                "defaultTitle": "Formulário"
+            },
+            "noResults": "Sem resultados",
+            "print": {
+                "noSelection": "Nenhum item selecionado"
+            }
+        }
+    },
+    "professional": {
+        "name": "Nome",
+        "phone": "Telefone",
+        "email": "Email",
+        "category": "Categoria",
+        "commission": "Comissão",
+        "inputConfig": {
+            "name": {
+                "label": "Nome",
+                "placeholder": "Digite o nome",
+                "description": "Nome completo do profissional"
+            },
+            "category": {
+                "label": "Categoria",
+                "placeholder": "Selecione a categoria",
+                "description": "Área de atuação do profissional",
+                "options": {
+                    "hair": "Cabelo",
+                    "nail": "Unha"
+                }
+            },
+            "cpf": {
+                "label": "CPF",
+                "placeholder": "Digite o CPF",
+                "description": "Cadastro de Pessoa Física (opcional)"
+            },
+            "phone": {
+                "label": "Telefone",
+                "placeholder": "Digite o telefone",
+                "description": "Telefone de contato (opcional)"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Digite o email",
+                "description": "Endereço de email (opcional)"
+            },
+            "commissionRules": {
+                "label": "Regras de Comissão",
+                "placeholder": "Adicione regras de comissão",
+                "description": "Defina as regras de comissão para este profissional"
+            }
+        }
+    },
+    "header": {
+        "finance": "Financeiro",
+        "professionals": "Profissionais",
+        "customers": "Clientes",
+        "schedule": "Agenda",
+        "signin": "Entrar"
+    },
     "form": {
         "errors": {
             "invalidType": "Esperado {expected}, recebido {received}",
