@@ -1,10 +1,9 @@
 'use client';
 
-import { InArticleAd } from "@/components/ad-unit";
+import { DisplayAdUnit, InArticleAd } from "@/components/ad-unit";
 import { getCustomerColumns } from "@/components/customers/column";
 import { CustomerDialog } from "@/components/customers/dialog";
 import { CustomerProvider } from "@/components/providers/customer";
-import { AdsSlot } from "@/components/ui/ads-slot";
 import { DataTable } from "@/components/ui/data-table/table";
 import { createCustomerSchema, defaultCustomerValues, GetCustomerConfig } from "@/schemas/customers";
 import { useLocale, useMessages, useTranslations } from "next-intl";
@@ -42,7 +41,7 @@ export default function CustomerPage() {
                         {t('description')}
                     </p>
                 </div>
-                <InArticleAd className="p-2 lg:w-3/4 mx-auto" />
+                <DisplayAdUnit format="horizontal" />
                 <DataTable
                     data={[customerMock]}
                     columns={getCustomerColumns(locale, messages)}

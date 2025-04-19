@@ -28,7 +28,7 @@ export function InArticleAd({ className }: { className?: string }) {
                     style={{ display: "block", textAlign: "center" }}
                     data-ad-layout="in-article"
                     data-ad-format="fluid"
-                    data-ad-slot="8920257026"
+                    data-ad-slot="4721006886"
                 ></ins>
             </AdUnit>
         </div>
@@ -50,7 +50,7 @@ export function DisplayAdUnit({
                     className="adsbygoogle"
                     data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_PUB_ID!}
                     style={{ display: "block" }}
-                    data-ad-slot="6759868245"
+                    data-ad-slot="4721006886"
                     data-ad-format={format}
                     data-full-width-responsive="true"
                 ></ins>
