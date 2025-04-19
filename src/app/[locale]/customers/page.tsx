@@ -3,6 +3,7 @@
 import { getCustomerColumns } from "@/components/customers/column";
 import { CustomerDialog } from "@/components/customers/dialog";
 import { CustomerProvider } from "@/components/providers/customer";
+import { AdSlot } from "@/components/ui/ads-slot";
 import { DataTable } from "@/components/ui/data-table/table";
 import { createCustomerSchema, defaultCustomerValues, GetCustomerConfig } from "@/schemas/customers";
 import { useLocale, useMessages, useTranslations } from "next-intl";
@@ -40,6 +41,8 @@ export default function CustomerPage() {
                         {t('description')}
                     </p>
                 </div>
+
+                <AdSlot client="ca-pub-1727720137782691" slot="4721006886" />
                 <DataTable
                     data={[customerMock]}
                     columns={getCustomerColumns(locale, messages)}
