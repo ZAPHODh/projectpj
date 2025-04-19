@@ -42,7 +42,7 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
-            <GoogleTagManager gtmId="GTM-NK9757G2" />
+            {/* <GoogleTagManager gtmId="GTM-NK9757G2" /> */}
             <body>
                 <SessionProvider initialSession={session}>
                     <ThemeProvider
@@ -63,7 +63,7 @@ export default async function LocaleLayout({
                         </FontProvider>
                     </ThemeProvider>
                 </SessionProvider>
-                <noscript
+                {/* <noscript
                     dangerouslySetInnerHTML={{
                         __html: `
               <iframe
@@ -74,7 +74,7 @@ export default async function LocaleLayout({
               ></iframe>
             `,
                     }}
-                />
+                /> */}
             </body>
         </html >
     );
