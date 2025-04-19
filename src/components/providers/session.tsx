@@ -59,6 +59,15 @@ const SessionProvider = ({ children, initialSession }: Props) => {
 
         return () => clearInterval(intervalRef.current);
     }, []);
+    useEffect(() => {
+        if (typeof window !== "undefined" && session?.user?.subscriptionRole) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "userRoleUpdate",
+                userRole: session.user.subscriptionRole,
+            });
+        }
+    }, [session?.user?.subscriptionRole]); // Executa sempre que a role mudar
 
     return (
         <SessionContext.Provider value={{ session, setSession, logout }}>

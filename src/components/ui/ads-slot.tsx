@@ -1,43 +1,47 @@
-'use client'
-import { useEffect } from 'react'
-import Script from 'next/script'
+// components/AdsSlot.tsx
+"use client";
 
-interface AdSlotProps {
-    client: string
-    slot: string
-}
+import { useEffect, useState } from "react";
+import { useSession } from "@/components/providers/session";
 
-export function AdSlot({ client, slot }: AdSlotProps) {
-    // 1) Carrega a lib do AdSense (só precisa uma vez por página/layout)
-    const src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`
+export const AdsSlot = ({ adClient, adSlot }: { adClient: string; adSlot: string }) => {
+    const { session } = useSession();
+    const [adLoaded, setAdLoaded] = useState(false);
 
     useEffect(() => {
-        // 3) Quando o <ins> já estiver no DOM, dispara o anúncio
-        if ((window as any).adsbygoogle) {
-            ; (window as any).adsbygoogle.push({})
+        const loadAd = () => {
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+                console.log('Ad initialized:', adSlot);
+                setAdLoaded(true);
+            } catch (error) {
+                console.error('Ad error:', error);
+            }
+        };
+
+        if (typeof window !== "undefined" && !window.adsbygoogle) {
+            const script = document.createElement('script');
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            script.async = true;
+            script.onload = loadAd;
+            document.head.appendChild(script);
+        } else if (window.adsbygoogle) {
+            loadAd();
         }
-    }, [])
+    }, [adClient, adSlot]);
+
+    if (session && session.user.subscriptionRole !== null) {
+        return null;
+    }
 
     return (
-        <>
-            {/* 1) O script que carrega a lib adsbygoogle.js */}
-            <Script
-                id={`adsense-lib-${client}`}
-                strategy="afterInteractive"
-                src={src}
-                async
-                crossOrigin="anonymous"
-            />
-
-            {/* 2) Container do anúncio */}
-            <ins
-                className="adsbygoogle"
-                style={{ display: 'block' }}
-                data-ad-client={client}
-                data-ad-slot={slot}
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-            ></ins>
-        </>
-    )
-}
+        <div className="ad-container" data-ad-status={adLoaded ? 'loaded' : 'loading'}>
+            <ins className="adsbygoogle"
+                style={{ display: 'block', border: '1px solid red' }}
+                data-ad-client={adClient}
+                data-ad-slot={adSlot}
+                data-adtest={process.env.NODE_ENV === 'development' ? 'on' : 'off'}>
+            </ins>
+        </div>
+    );
+};

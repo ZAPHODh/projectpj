@@ -3,7 +3,7 @@
 import { getCustomerColumns } from "@/components/customers/column";
 import { CustomerDialog } from "@/components/customers/dialog";
 import { CustomerProvider } from "@/components/providers/customer";
-import { AdSlot } from "@/components/ui/ads-slot";
+import { AdsSlot } from "@/components/ui/ads-slot";
 import { DataTable } from "@/components/ui/data-table/table";
 import { createCustomerSchema, defaultCustomerValues, GetCustomerConfig } from "@/schemas/customers";
 import { useLocale, useMessages, useTranslations } from "next-intl";
@@ -41,18 +41,11 @@ export default function CustomerPage() {
                         {t('description')}
                     </p>
                 </div>
+                <AdsSlot
+                    adClient="ca-pub-1727720137782691"
+                    adSlot="4721006886"
+                />
 
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1727720137782691"
-                    crossOrigin="anonymous"></script>
-                <ins className="adsbygoogle"
-                    style={{ display: "block" }}
-                    data-ad-client="ca-pub-1727720137782691"
-                    data-ad-slot="4721006886"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                </script>
                 <DataTable
                     data={[customerMock]}
                     columns={getCustomerColumns(locale, messages)}
