@@ -13,7 +13,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import SessionProvider from '@/components/providers/session';
 import { ZodProvider } from '@/components/providers/zodI18n';
 import { GoogleTagManager } from '@next/third-parties/google'
-
+import { Analytics } from "@vercel/analytics/react";
+import Adsense from "@/components/adsense";
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-inter',
@@ -42,7 +43,9 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
-            {/* <GoogleTagManager gtmId="GTM-NK9757G2" /> */}
+            <head>
+                <Adsense />
+            </head>
             <body>
                 <SessionProvider initialSession={session}>
                     <ThemeProvider
@@ -57,24 +60,15 @@ export default async function LocaleLayout({
                                     <NavHeader />
                                     {children}
                                     <FooterSection />
+                                    <Analytics />
+                                    <GoogleTagManager gtmId="GTM-NK9757G2" />
                                 </ZodProvider>
                             </NextIntlClientProvider>
                             <Toaster />
                         </FontProvider>
                     </ThemeProvider>
                 </SessionProvider>
-                {/* <noscript
-                    dangerouslySetInnerHTML={{
-                        __html: `
-              <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-NK9757G2"
-                height="0"
-                width="0"
-                style="display:none;visibility:hidden"
-              ></iframe>
-            `,
-                    }}
-                /> */}
+
             </body>
         </html >
     );

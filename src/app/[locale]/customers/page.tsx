@@ -1,5 +1,6 @@
 'use client';
 
+import { InArticleAd } from "@/components/ad-unit";
 import { getCustomerColumns } from "@/components/customers/column";
 import { CustomerDialog } from "@/components/customers/dialog";
 import { CustomerProvider } from "@/components/providers/customer";
@@ -41,11 +42,7 @@ export default function CustomerPage() {
                         {t('description')}
                     </p>
                 </div>
-                <AdsSlot
-                    adClient="ca-pub-1727720137782691"
-                    adSlot="4721006886"
-                />
-
+                <InArticleAd className="p-2 lg:w-3/4 mx-auto" />
                 <DataTable
                     data={[customerMock]}
                     columns={getCustomerColumns(locale, messages)}
