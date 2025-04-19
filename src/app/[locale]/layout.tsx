@@ -61,7 +61,7 @@ export default async function LocaleLayout({
                                     {children}
                                     <FooterSection />
                                     <Analytics />
-                                    <GoogleTagManager gtmId="GTM-NK9757G2" />
+                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
                                 </ZodProvider>
                             </NextIntlClientProvider>
                             <Toaster />
