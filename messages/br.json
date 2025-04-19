@@ -1,5 +1,64 @@
 {
     "customer": {
+        "import": {
+            "DocumentUploader": {
+                "title": "Upload de Documentos",
+                "upload": {
+                    "line1": "Clique para enviar ou arraste e solte",
+                    "line2": "CSV E JSON até {maxSize}MB"
+                },
+                "button": "Remover",
+                "errorPrefix": "Erro: ",
+                "send": "Enviar"
+            },
+            "alert": {
+                "title": "Aviso",
+                "description": {
+                    "list1": "Dados inconsistentes serão rejeitados automaticamente pelo sistema",
+                    "list2": "Verifique a formatação antes de importar",
+                    "list3": "Campos obrigatórios: ",
+                    "fields": "Nome completo e Telefone",
+                    "list4": "Mantenha os padrões de formatação especificados"
+                }
+            },
+            "technicalRequirements": "Requisitos Técnicos Essenciais",
+            "structure": {
+                "title": "Estrutura Básica",
+                "fileName": "clientes.json"
+            },
+            "csv": {
+                "title": "Formato CSV",
+                "headers": [
+                    "name",
+                    "phone",
+                    "email",
+                    "birthDay"
+                ],
+                "note": "Cabeçalhos devem seguir esta ordem exata"
+            },
+            "validation": {
+                "title": "Validação de Campos",
+                "formatRules": "Regras de Formatação",
+                "phone": "Telefone:",
+                "phoneNote": "Apenas números com DDD (ex: 11999990000)",
+                "birthday": "Data de Nascimento:",
+                "birthdayNote": "Formato ISO 8601 (AAAA-MM-DD)",
+                "gender": "Gênero:",
+                "genderNote": "Valores aceitos:",
+                "genderValues": [
+                    "M (Masculino)",
+                    "F (Feminino)",
+                    "O (Outros)"
+                ],
+                "email": "E-mail:",
+                "emailNote": "Deve seguir padrão RFC 5322"
+            }
+        },
+        "page": {
+            "title": "Clientes",
+            "description": "Gerencie os dados dos seus clientes.",
+            "export": "clientes"
+        },
         "dialog": {
             "title": "Detalhes do Cliente",
             "description": "Gerencie as informações do cliente",

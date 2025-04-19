@@ -50,7 +50,10 @@ export function PricingTable({
 
   const [isYearly, setIsYearly] = React.useState(defaultInterval === "yearly")
   const [selectedPlan, setSelectedPlan] = React.useState<PlanLevel>(defaultPlan)
+  const handleCheckout = async (planLevel: string) => {
 
+
+  }
   const handlePlanSelect = (plan: PlanLevel) => {
     setSelectedPlan(plan)
     onPlanSelect?.(plan)
@@ -188,6 +191,7 @@ export function PricingTable({
               "w-full sm:w-auto bg-primary hover:bg-primary px-8 py-2 rounded-xl",
               buttonClassName,
             )}
+            onClick={() => handleCheckout(selectedPlan)}
           >
             {t('cta', { plan: plans.find((p) => p.level === selectedPlan)?.name as string })}
             <ArrowRightIcon className="w-4 h-4 ml-2" />

@@ -47,10 +47,7 @@ import { Badge } from "../ui/badge";
 type CustomerDialogProps = {
     isDialogOpen: boolean
     setIsDialogOpen: (open: boolean) => void
-    selectedRowData: Customer & {
-        appointments: Appointment[];
-        services: Service[];
-    } | null
+    selectedRowData: Customer | null
 }
 function CustomerDialog({ isDialogOpen, setIsDialogOpen, selectedRowData }: CustomerDialogProps) {
     const locale = useLocale();

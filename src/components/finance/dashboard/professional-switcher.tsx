@@ -37,16 +37,15 @@ type Team = (typeof groups)[number]["teams"][number]
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
-interface TeamSwitcherProps extends PopoverTriggerProps { }
+interface ProfessionalSwitcherProps extends PopoverTriggerProps { }
 
-export default function TeamSwitcher({ className }: TeamSwitcherProps) {
+export default function ProfessionalSwitcher({ className }: ProfessionalSwitcherProps) {
     const [open, setOpen] = React.useState(false)
     const [selectedTeam, setSelectedTeam] = React.useState<Team>(
         groups[0].teams[0]
     )
 
     return (
-
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button
@@ -109,6 +108,5 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 </Command>
             </PopoverContent>
         </Popover>
-
     )
 }

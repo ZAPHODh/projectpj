@@ -1,5 +1,64 @@
 {
     "customer": {
+        "import": {
+            "DocumentUploader": {
+                "title": "Document Upload",
+                "upload": {
+                    "line1": "Click to upload or drag and drop",
+                    "line2": "CSV AND JSON up to {maxSize}MB"
+                },
+                "button": "Remove",
+                "errorPrefix": "Error: ",
+                "send": "Send"
+            },
+            "alert": {
+                "title": "Warning",
+                "description": {
+                    "list1": "Inconsistent data will be automatically rejected by the system",
+                    "list2": "Check formatting before importing",
+                    "list3": "Required fields: ",
+                    "fields": "Full name and Phone",
+                    "list4": "Maintain specified formatting standards"
+                }
+            },
+            "technicalRequirements": "Essential Technical Requirements",
+            "structure": {
+                "title": "Basic Structure",
+                "fileName": "customers.json"
+            },
+            "csv": {
+                "title": "CSV Format",
+                "headers": [
+                    "name",
+                    "phone",
+                    "email",
+                    "birthDay"
+                ],
+                "note": "Headers must follow this exact order"
+            },
+            "validation": {
+                "title": "Field Validation",
+                "formatRules": "Formatting Rules",
+                "phone": "Phone:",
+                "phoneNote": "Numbers with area code only (ex: 11999990000)",
+                "birthday": "Birth Date:",
+                "birthdayNote": "ISO 8601 format (YYYY-MM-DD)",
+                "gender": "Gender:",
+                "genderNote": "Accepted values:",
+                "genderValues": [
+                    "M (Male)",
+                    "F (Female)",
+                    "O (Other)"
+                ],
+                "email": "Email:",
+                "emailNote": "Must follow RFC 5322 standard"
+            }
+        },
+        "page": {
+            "title": "Customers",
+            "description": "Manage your customers' data.",
+            "export": "customers"
+        },
         "dialog": {
             "title": "Customer Details",
             "description": "Manage customer information",

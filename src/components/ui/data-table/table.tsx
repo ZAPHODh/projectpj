@@ -33,8 +33,14 @@ import { FieldConfig, GenericFormsInput } from "../input/generic";
 import { SheetForm } from "@/components/widgets/sheet-form";
 import { ExportTo } from "@/components/widgets/export";
 import { useTranslations } from "next-intl";
+import { DocumentUploader } from "@/components/widgets/document-uploader";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../dropdown-menu";
+import { Button } from "../button";
+import { CustomerImportInfo } from "@/components/widgets/customer-import-info";
+import { ImportCustomer } from "@/components/widgets/import-customer";
 
 interface DataTableProps<TData, TValue> {
+    imports?: true;
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     exportTo?: true;
@@ -49,6 +55,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({
+    imports,
     columns,
     data,
     exportTo,
@@ -137,37 +144,42 @@ export function DataTable<TData, TValue>({
     return (
         <div className="flex flex-col p-4 gap-4 w-full">
             <Card>
-                <div className="flex items-center p-4 gap-4 overflow-x-auto">
+                <div className="flex flex-col lg:flex-row items-center p-4 gap-4 overflow-x-auto">
                     <Input
                         placeholder={t('search.placeholder')}
                         value={globalFilter ?? ""}
                         onChange={(event) => setGlobalFilter(event.target.value)}
                         className="max-w-sm"
                     />
-                    {exportTo && <ExportTo exportTo={(format) => handleExport(format)} />}
-                    {newItem && onNewItem && (
-                        <SheetForm
-                            schema={newItem.schema}
-                            triggerLabel={
-                                <>
-                                    <Plus />
-                                    {t('addButton', { name: newItem.name as string })}
-                                </>
-                            }
-                            onSubmit={onNewItem}
-                            title={
-                                newItem.name
-                                    ? t('form.title', { name: newItem.name })
-                                    : t('form.defaultTitle')
-                            }
-                            defaultValues={newItem.defaultValues}
-                        >
-                            <GenericFormsInput
-                                variants="single"
-                                fieldConfig={newItem.fieldConfig}
-                            />
-                        </SheetForm>
-                    )}
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-2 w-full">
+                        <div className="flex flex-row items-start md:items-center gap-2 w-full">
+                            {exportTo && <ExportTo exportTo={(format) => handleExport(format)} />}
+                            {newItem && onNewItem && (
+                                <SheetForm
+                                    schema={newItem.schema}
+                                    triggerLabel={
+                                        <>
+                                            <Plus />
+                                            {t('addButton', { name: newItem.name as string })}
+                                        </>
+                                    }
+                                    onSubmit={onNewItem}
+                                    title={
+                                        newItem.name
+                                            ? t('form.title', { name: newItem.name })
+                                            : t('form.defaultTitle')
+                                    }
+                                    defaultValues={newItem.defaultValues}
+                                >
+                                    <GenericFormsInput
+                                        variants="single"
+                                        fieldConfig={newItem.fieldConfig}
+                                    />
+                                </SheetForm>
+                            )}
+                        </div>
+                        {imports && <ImportCustomer />}
+                    </div>
                     <DataTableViewOptions table={table} />
                 </div>
             </Card>
