@@ -67,7 +67,7 @@ export default async function LocaleLayout({
                     dangerouslySetInnerHTML={{
                         __html: `
               <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-ABC1234"
+                src="https://www.googletagmanager.com/ns.html?id=GTM-NK9757G2"
                 height="0"
                 width="0"
                 style="display:none;visibility:hidden"
