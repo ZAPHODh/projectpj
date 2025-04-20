@@ -40,6 +40,7 @@ export function DocumentUploader(props: { setOpen: (open: boolean) => void }) {
                 })
                 clearFile();
             }
+            console.log(data.customers)
             setCustomers(data.customers)
             props.setOpen(false)
             clearFile()

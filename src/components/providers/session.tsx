@@ -67,7 +67,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
                 userRole: session.user.subscriptionRole,
             });
         }
-    }, [session?.user?.subscriptionRole]); // Executa sempre que a role mudar
+    }, [session?.user?.subscriptionRole]); 
 
     return (
         <SessionContext.Provider value={{ session, setSession, logout }}>
