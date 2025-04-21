@@ -1,3 +1,5 @@
+'use client';
+
 import Script from 'next/script'
 
 import { CookieState, useCookiesPolicy } from '@/hooks/use-cookiespolicy'
