@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet"
 import { Button } from "../ui/button"
 import { Menu } from "lucide-react"
+import { useState } from "react"
 
 export default function NavHeader() {
     const pathname = usePathname()
@@ -91,9 +92,10 @@ export function MainNav({
 function MobileNav() {
     const t = useTranslations("header")
     const pathname = usePathname()
+    const [open, setOpen] = useState(false)
 
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
                     <Menu className="h-6 w-6" />
@@ -104,6 +106,7 @@ function MobileNav() {
                 <nav className="flex flex-col space-y-4 mt-6">
                     <Link
                         href="/finance"
+                        onClick={() => setOpen(false)}
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-primary",
                             pathname.includes("/finance") ? "" : "text-muted-foreground"
@@ -113,6 +116,7 @@ function MobileNav() {
                     </Link>
                     <Link
                         href="/professionals"
+                        onClick={() => setOpen(false)}
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-primary",
                             pathname.includes("/professionals") ? "" : "text-muted-foreground"
@@ -122,6 +126,7 @@ function MobileNav() {
                     </Link>
                     <Link
                         href="/customers"
+                        onClick={() => setOpen(false)}
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-primary",
                             pathname.includes("/customers") ? "" : "text-muted-foreground"
@@ -131,6 +136,7 @@ function MobileNav() {
                     </Link>
                     <Link
                         href="/calendar/week-view"
+                        onClick={() => setOpen(false)}
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-primary",
                             pathname.includes("/calendar") ? "" : "text-muted-foreground"
