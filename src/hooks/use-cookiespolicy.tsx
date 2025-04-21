@@ -12,22 +12,25 @@ export enum CookieState {
 }
 
 export const useCookiesPolicy = () => {
-    const [cookieState, setCookieState] = useState<CookieState>(CookieState.PENDING)
+    const [cookieState, setCookieState] = useState<string | undefined>(undefined)
 
     useEffect(() => {
-        const cookie = getCookie(COOKIE_NAME)
-        setCookieState(cookie as CookieState || CookieState.PENDING)
+        const fetchCookie = async () => {
+            const cookie = await getCookie(COOKIE_NAME)
+            setCookieState(cookie as string | undefined)
+        }
+        fetchCookie()
     }, [])
 
     const updateConsent = (state: CookieState) => {
         const consent = state === CookieState.ACCEPTED ? 'granted' : 'denied'
-        window.dataLayer = window.dataLayer || []
-        window.dataLayer.push({
-            event: 'updateConsent',
-            ad_storage: consent,
+        // @ts-expect-error
+        window.gtag('consent', 'update', {
             analytics_storage: consent,
+            ad_storage: consent,
             ad_personalization: consent,
-            ad_user_data: consent
+            ad_user_data: consent,
+            fb_pixel: consent,
         })
     }
 
@@ -42,6 +45,10 @@ export const useCookiesPolicy = () => {
         setCookie(COOKIE_NAME, CookieState.REJECTED, { maxAge: 24 * 60 * 60 * 365 })
         updateConsent(CookieState.REJECTED)
     }
+
+    useEffect(() => {
+        if (!cookieState) setCookieState(CookieState.PENDING)
+    }, [cookieState])
 
     return {
         cookieState,

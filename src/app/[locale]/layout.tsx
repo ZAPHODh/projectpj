@@ -12,8 +12,6 @@ import NavHeader from '@/components/widgets/nav-header';
 import { getServerSession } from '@/lib/auth/server-session';
 import SessionProvider from '@/components/providers/session';
 import { ZodProvider } from '@/components/providers/zodI18n';
-import { GoogleTagManager } from '@next/third-parties/google'
-// import { Analytics } from "@vercel/analytics/react";
 import Analytics from "@/components/adsense";
 import CookieBanner from '@/components/widgets/cookie-consent';
 const inter = Inter({
