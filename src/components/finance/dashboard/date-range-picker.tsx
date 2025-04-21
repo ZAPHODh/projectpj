@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { getFnsLocale } from "@/lib/helper"
 
 
@@ -18,6 +18,7 @@ export function CalendarDateRangePicker({
 }: React.HTMLAttributes<HTMLDivElement>) {
     const l = useLocale()
     const locale = getFnsLocale(l)
+    const t = useTranslations('calendar.common')
     const [date, setDate] = React.useState<DateRange | undefined>({
         from: new Date(2023, 0, 20),
         to: addDays(new Date(2023, 0, 20), 20),
@@ -46,7 +47,7 @@ export function CalendarDateRangePicker({
                                 format(date.from, "LLL dd, y", { locale })
                             )
                         ) : (
-                            <span>Pick a date</span>
+                            <span>{t('pick')}</span>
                         )}
                     </Button>
                 </PopoverTrigger>

@@ -25,10 +25,10 @@ export function MainNav({
                 Customers
             </Link>
             <Link
-                href="/finance/professionals"
+                href="/finance/services"
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-                Professionals
+                Services
             </Link>
             <Link
                 href="/finance/settings"

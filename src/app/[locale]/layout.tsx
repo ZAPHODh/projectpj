@@ -12,9 +12,10 @@ import NavHeader from '@/components/widgets/nav-header';
 import { getServerSession } from '@/lib/auth/server-session';
 import SessionProvider from '@/components/providers/session';
 import { ZodProvider } from '@/components/providers/zodI18n';
-import { GoogleTagManager } from '@next/third-parties/google'
-import { Analytics } from "@vercel/analytics/react";
-import Adsense from "@/components/adsense";
+// import { GoogleTagManager } from '@next/third-parties/google'
+// import { Analytics } from "@vercel/analytics/react";
+import Analytics from "@/components/adsense";
+import CookieBanner from '@/components/widgets/cookie-consent';
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-inter',
@@ -43,9 +44,6 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
-            <head>
-                <Adsense />
-            </head>
             <body>
                 <SessionProvider initialSession={session}>
                     <ThemeProvider
@@ -59,9 +57,10 @@ export default async function LocaleLayout({
                                 <ZodProvider>
                                     <NavHeader />
                                     {children}
+                                    <CookieBanner />
                                     <FooterSection />
                                     <Analytics />
-                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+                                    {/* <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} /> */}
                                 </ZodProvider>
                             </NextIntlClientProvider>
                             <Toaster />

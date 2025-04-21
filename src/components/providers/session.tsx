@@ -31,7 +31,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
     const logout = async () => {
         if (!session) return;
 
-        const res = await fetch("/api/auth/signout", { method: "POST" });
+        const res = await fetch("/api/auth/logout", { method: "POST" });
         const result = await res.json();
 
         if (res.ok && !!result?.success) {
@@ -42,7 +42,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
 
     async function checkSession() {
         if (session) {
-            const res = await fetch("/api/auth/signout", { method: "POST" });
+            const res = await fetch("/api/auth/session", { method: "POST" });
 
             if (!res.ok) {
                 clearInterval(intervalRef.current);
@@ -59,15 +59,6 @@ const SessionProvider = ({ children, initialSession }: Props) => {
 
         return () => clearInterval(intervalRef.current);
     }, []);
-    useEffect(() => {
-        if (typeof window !== "undefined" && session?.user?.subscriptionRole) {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: "userRoleUpdate",
-                userRole: session.user.subscriptionRole,
-            });
-        }
-    }, [session?.user?.subscriptionRole]); 
 
     return (
         <SessionContext.Provider value={{ session, setSession, logout }}>
@@ -75,5 +66,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
         </SessionContext.Provider>
     );
 };
+
 export const useSession = () => useContext(SessionContext);
+
 export default SessionProvider;

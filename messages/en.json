@@ -1,4 +1,22 @@
 {
+    "cookies": {
+        "message": "We use cookies to enhance your experience on our website.",
+        "readMore": "Read more",
+        "reject": "Reject",
+        "accept": "Accept"
+    },
+    "finance": {
+        "nav": {
+            "dashboard": "Dashboard",
+            "dailyEntries": "Daily Entries",
+            "profitability": "Profitability",
+            "project": "Project",
+            "header": {
+                "salon": "Salon",
+                "schedule": "Schedule"
+            }
+        }
+    },
     "customer": {
         "import": {
             "DocumentUploader": {
@@ -12,7 +30,7 @@
                 "send": "Send"
             },
             "alert": {
-                "button": "Import customers",
+                "button": "Import Customers",
                 "title": "Warning",
                 "description": {
                     "list1": "Inconsistent data will be automatically rejected by the system",
@@ -661,7 +679,8 @@
     },
     "calendar": {
         "common": {
-            "all": "All"
+            "all": "All",
+            "pick": "Pick a date"
         },
         "dayView": {
             "currentSchedules": {

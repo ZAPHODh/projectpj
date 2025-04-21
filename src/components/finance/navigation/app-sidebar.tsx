@@ -16,30 +16,34 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { NavMain } from "./nav-man"
+import { NavMain } from "./nav-main"
 import { Link } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
 
-const data = {
-    navMain: [
-        {
-            title: "Dashboard",
-            url: "/finance",
-            icon: LayoutDashboardIcon,
-        },
-        {
-            title: "Lançamentos diários",
-            url: "/finance/daily",
-            icon: ListIcon,
-        },
-        {
-            title: "Lucratividade",
-            url: "/finance/profit",
-            icon: BarChartIcon,
-        },
-    ],
-}
+
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const t = useTranslations('finance.nav')
+    const data = {
+        navMain: [
+            {
+                title: t('dashboard'),
+                url: "/finance",
+                icon: LayoutDashboardIcon,
+            },
+            {
+                title: t('dailyEntries'),
+                url: "/finance/daily",
+                icon: ListIcon,
+            },
+            {
+                title: t('profitability'),
+                url: "/finance/profit",
+                icon: BarChartIcon,
+            },
+        ],
+    }
+
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>

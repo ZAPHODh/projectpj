@@ -1,4 +1,22 @@
 {
+    "cookies": {
+        "message": "Usamos cookies para melhorar sua experiência em nosso site.",
+        "readMore": "Saiba mais",
+        "reject": "Rejeitar",
+        "accept": "Aceitar"
+    },
+    "finance": {
+        "nav": {
+            "dashboard": "Dashboard",
+            "dailyEntries": "Lançamentos diários",
+            "profitability": "Lucratividade",
+            "project": "Projeto",
+            "header": {
+                "salon": "Salão",
+                "schedule": "Agenda"
+            }
+        }
+    },
     "customer": {
         "import": {
             "DocumentUploader": {
@@ -662,7 +680,8 @@
     },
     "calendar": {
         "common": {
-            "all": "Todos"
+            "all": "Todos",
+            "pick": "Escolha uma data"
         },
         "dayView": {
             "currentSchedules": {
