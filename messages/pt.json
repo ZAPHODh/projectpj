@@ -12,9 +12,10 @@
                 "send": "Enviar"
             },
             "alert": {
+                "button": "Importar Clientes",
                 "title": "Aviso",
                 "description": {
-                    "list1": "Dados que não seguirem o padrão descrito no campo VALIDAÇÃO DE CAMPOS, serão rejeitados automaticamente pelo sistema",
+                    "list1": "Dados que não seguirem o padrão descrito em VALIDAÇÃO DE CAMPOS, serão rejeitados automaticamente pelo sistema",
                     "list2": "Verifique a formatação antes de importar",
                     "list3": "Campos obrigatórios: ",
                     "fields": "Nome completo e Telefone",

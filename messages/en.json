@@ -12,6 +12,7 @@
                 "send": "Send"
             },
             "alert": {
+                "button": "Import customers",
                 "title": "Warning",
                 "description": {
                     "list1": "Inconsistent data will be automatically rejected by the system",
