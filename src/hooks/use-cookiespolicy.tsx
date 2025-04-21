@@ -3,7 +3,7 @@
 import { setCookie, getCookie } from 'cookies-next'
 import { useEffect, useState } from 'react'
 
-const COOKIE_NAME = 'YOUR_COOKIE_NAME'
+const COOKIE_NAME = 'USER_CONSENT'
 
 export enum CookieState {
     PENDING = 'pending',
