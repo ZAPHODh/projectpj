@@ -12,9 +12,15 @@ export enum CookieState {
 }
 
 export const useCookiesPolicy = () => {
-    const [cookieState, setCookieState] = useState<string | undefined>(
-        getCookie(COOKIE_NAME)
-    )
+    const [cookieState, setCookieState] = useState<string | undefined>(undefined)
+
+    useEffect(() => {
+        const fetchCookie = async () => {
+            const cookie = await getCookie(COOKIE_NAME)
+            setCookieState(cookie as string | undefined)
+        }
+        fetchCookie()
+    }, [])
 
     const updateConsent = (state: CookieState) => {
         const consent = state === CookieState.ACCEPTED ? 'granted' : 'denied'
