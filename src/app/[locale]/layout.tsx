@@ -68,7 +68,6 @@ export default async function LocaleLayout({
                         </FontProvider>
                     </ThemeProvider>
                 </SessionProvider>
-
             </body>
         </html >
     );
