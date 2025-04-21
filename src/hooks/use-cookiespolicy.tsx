@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { setCookie, getCookie } from 'cookies-next'
-import { useEffect, useState } from 'react'
+import { setCookie } from 'cookies-next'
+import { useState } from 'react'
 
-const COOKIE_NAME = 'USER_CONSENT'
+const COOKIE_NAME = 'CONSENT'
 
 export enum CookieState {
     PENDING = 'pending',
@@ -11,20 +11,23 @@ export enum CookieState {
     REJECTED = 'rejected',
 }
 
-export const useCookiesPolicy = () => {
-    const [cookieState, setCookieState] = useState<string | undefined>(undefined)
+const getClientCookie = (name: string): string | undefined => {
+    if (typeof document === 'undefined') return undefined
+    const cookie = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(name + '='))
+        ?.split('=')[1]
+    return cookie ? decodeURIComponent(cookie) : undefined
+}
 
-    useEffect(() => {
-        const fetchCookie = async () => {
-            const cookie = await getCookie(COOKIE_NAME)
-            setCookieState(cookie as string | undefined)
-        }
-        fetchCookie()
-    }, [])
+export const useCookiesPolicy = () => {
+    const [cookieState, setCookieState] = useState<string | undefined>(() => {
+        return getClientCookie(COOKIE_NAME) ?? CookieState.PENDING
+    })
 
     const updateConsent = (state: CookieState) => {
         const consent = state === CookieState.ACCEPTED ? 'granted' : 'denied'
-        window.gtag('consent', 'update', {
+        window?.gtag?.('consent', 'update', {
             analytics_storage: consent,
             ad_storage: consent,
             ad_personalization: consent,
@@ -35,19 +38,15 @@ export const useCookiesPolicy = () => {
 
     const acceptCookies = () => {
         setCookieState(CookieState.ACCEPTED)
-        setCookie(COOKIE_NAME, CookieState.ACCEPTED, { maxAge: 24 * 60 * 60 * 365 })
+        setCookie(COOKIE_NAME, CookieState.ACCEPTED, { maxAge: 60 * 60 * 24 * 365 })
         updateConsent(CookieState.ACCEPTED)
     }
 
     const rejectCookies = () => {
         setCookieState(CookieState.REJECTED)
-        setCookie(COOKIE_NAME, CookieState.REJECTED, { maxAge: 24 * 60 * 60 * 365 })
+        setCookie(COOKIE_NAME, CookieState.REJECTED, { maxAge: 60 * 60 * 24 * 365 })
         updateConsent(CookieState.REJECTED)
     }
-
-    useEffect(() => {
-        if (!cookieState) setCookieState(CookieState.PENDING)
-    }, [cookieState])
 
     return {
         cookieState,

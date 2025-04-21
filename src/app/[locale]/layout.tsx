@@ -12,6 +12,7 @@ import NavHeader from '@/components/widgets/nav-header';
 import { getServerSession } from '@/lib/auth/server-session';
 import SessionProvider from '@/components/providers/session';
 import { ZodProvider } from '@/components/providers/zodI18n';
+import Analytics from "@/components/analytics";
 import Adsense from "@/components/adsense";
 import { GoogleTagManager } from "@next/third-parties/google";
 import CookieBanner from '@/components/widgets/cookie-consent';
@@ -60,7 +61,8 @@ export default async function LocaleLayout({
                                     <NavHeader />
                                     {children}
                                     <CookieBanner />
-                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+                                    {/* <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} /> */}
+                                    <Analytics />
                                     <FooterSection />
                                 </ZodProvider>
                             </NextIntlClientProvider>
