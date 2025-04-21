@@ -41,7 +41,7 @@ export default function CustomerPage() {
                         {t('description')}
                     </p>
                 </div>
-                <DisplayAdUnit format="horizontal" />
+                {/* <DisplayAdUnit format="horizontal" /> */}
                 <DataTable
                     data={[customerMock]}
                     columns={getCustomerColumns(locale, messages)}
