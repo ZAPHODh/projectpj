@@ -24,7 +24,6 @@ export const useCookiesPolicy = () => {
 
     const updateConsent = (state: CookieState) => {
         const consent = state === CookieState.ACCEPTED ? 'granted' : 'denied'
-        // @ts-expect-error
         window.gtag('consent', 'update', {
             analytics_storage: consent,
             ad_storage: consent,

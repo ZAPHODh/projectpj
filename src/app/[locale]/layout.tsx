@@ -12,7 +12,8 @@ import NavHeader from '@/components/widgets/nav-header';
 import { getServerSession } from '@/lib/auth/server-session';
 import SessionProvider from '@/components/providers/session';
 import { ZodProvider } from '@/components/providers/zodI18n';
-import Analytics from "@/components/adsense";
+import Adsense from "@/components/adsense";
+import { GoogleTagManager } from "@next/third-parties/google";
 import CookieBanner from '@/components/widgets/cookie-consent';
 const inter = Inter({
     subsets: ['latin'],
@@ -43,7 +44,7 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
             <head>
-                <Analytics />
+                <Adsense />
             </head>
             <body>
                 <SessionProvider initialSession={session}>
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
                                     <NavHeader />
                                     {children}
                                     <CookieBanner />
+                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
                                     <FooterSection />
                                 </ZodProvider>
                             </NextIntlClientProvider>
