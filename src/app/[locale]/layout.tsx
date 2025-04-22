@@ -45,6 +45,7 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
             <head>
+                <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_PUB_ID} />
                 <Adsense />
             </head>
             <body>
