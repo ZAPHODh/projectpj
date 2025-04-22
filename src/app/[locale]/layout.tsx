@@ -61,8 +61,8 @@ export default async function LocaleLayout({
                                     <NavHeader />
                                     {children}
                                     <CookieBanner />
-                                    {/* <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} /> */}
-                                    <Analytics />
+                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+                                    {/* <Analytics /> */}
                                     <FooterSection />
                                 </ZodProvider>
                             </NextIntlClientProvider>
