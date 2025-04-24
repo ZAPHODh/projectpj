@@ -10,12 +10,12 @@ export default function CookieBanner() {
     const t = useTranslations('cookies')
     const { cookieState, onAcceptCookies, onRejectCookies } = useCookiesPolicy()
 
-    if (!cookieState || cookieState !== CookieState.PENDING) return null
+    if (cookieState || cookieState !== CookieState.PENDING) return null
 
     return (
         <div
             id="cookies-banner"
-            className="z-20 max-w-xs md:max-w-xl mx-auto fixed bottom-4 left-0 right-0 bg-muted rounded-lg border-2 shadow-lg"
+            className="z-20 max-w-xs md:max-w-xl mx-auto fixed bottom-4 left-0 right-0 bg-muted rounded-lg border-2 shadow-lg z-58"
         >
             <div className="flex flex-col justify-between items-center px-3 md:flex-row">
                 <div className="mt-3 md:mt-0">

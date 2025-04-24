@@ -1,13 +1,49 @@
-import { SCHEDULES_MOCK, PROFESSIONALS_MOCK } from "@/calendar/mocks";
+'use server'
 
-export const getSchedules = async () => {
-  // Increase the delay to better see the loading state
-  await new Promise(resolve => setTimeout(resolve, 800));
-  return SCHEDULES_MOCK;
-};
+export const getSchedules = async (token: string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/appointments`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: 'no-store',
+    })
+    if (!response.ok) throw new Error('Erro na requisição')
+    return await response.json()
+  } catch (error) {
+    console.error('Erro ao buscar agendamentos:', error)
+    return []
+  }
+}
 
-export const getProfessionals = async () => {
-  // Increase the delay to better see the loading state
-  await new Promise(resolve => setTimeout(resolve, 800));
-  return PROFESSIONALS_MOCK;
-};
+export const getProfessionals = async (token: string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/professionals`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: 'no-store',
+    })
+    if (!response.ok) throw new Error('Erro na requisição')
+    return await response.json()
+  } catch (error) {
+    console.error('Erro ao buscar profissionais:', error)
+    return []
+  }
+}
+
+export const getServices = async (token: string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/services`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: 'no-store',
+    })
+    if (!response.ok) throw new Error('Erro na requisição')
+    return await response.json()
+  } catch (error) {
+    console.error('Erro ao buscar serviços:', error)
+    return []
+  }
+}

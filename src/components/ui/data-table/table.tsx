@@ -33,10 +33,7 @@ import { FieldConfig, GenericFormsInput } from "../input/generic";
 import { SheetForm } from "@/components/widgets/sheet-form";
 import { ExportTo } from "@/components/widgets/export";
 import { useTranslations } from "next-intl";
-import { DocumentUploader } from "@/components/widgets/document-uploader";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "../dropdown-menu";
-import { Button } from "../button";
-import { CustomerImportInfo } from "@/components/widgets/customer-import-info";
+
 import { ImportCustomer } from "@/components/widgets/import-customer";
 
 interface DataTableProps<TData, TValue> {

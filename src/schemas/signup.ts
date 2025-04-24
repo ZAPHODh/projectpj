@@ -1,4 +1,3 @@
-"use client";
 
 import { z } from "zod";
 
@@ -12,5 +11,5 @@ export const signupSchema = z.object({
         .email(),
     password: z
         .string()
-        .min(6),
+        .min(8),
 });

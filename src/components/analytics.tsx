@@ -4,15 +4,14 @@ import Script from 'next/script'
 
 import { CookieState, useCookiesPolicy } from '@/hooks/use-cookiespolicy'
 
-export default function Analytics() {
+export default function Analytics(props: { nonce: string | undefined }) {
   const { cookieState } = useCookiesPolicy()
-
-
   const consent = cookieState === CookieState.ACCEPTED ? 'granted' : 'denied'
 
   return (
     <>
       <Script
+        nonce={props.nonce}
         id="gtm"
         dangerouslySetInnerHTML={{
           __html: `

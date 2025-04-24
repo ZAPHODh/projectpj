@@ -1,13 +1,18 @@
-'use client';
+
 
 import { ChevronLeft } from "lucide-react";
 
 import React from "react";
 import { AuthFooter } from "@/components/auth/auth-footer";
-import { Link } from "@/i18n/navigation";
+import { Link, redirect } from "@/i18n/navigation";
+import { getServerSession } from "@/lib/auth/server-session";
+import { getLocale } from "next-intl/server";
 
-export default function Page(props: { children: React.ReactNode }) {
 
+export default async function Page(props: { children: React.ReactNode }) {
+    const session = await getServerSession()
+    const locale = await getLocale()
+    if (session) redirect({ href: '/account', locale })
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
             <div className="flex flex-col gap-4 p-6 md:p-10">

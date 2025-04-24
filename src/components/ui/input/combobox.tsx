@@ -73,7 +73,7 @@ export function Combobox({
                                         !field.value && "text-muted-foreground"
                                     )}
                                 >
-                                    {field.value ? field.value : `Selecione um ${placeholder}`}
+                                    {field.value ? field.value : `${placeholder}`}
                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                 </Button>
                             </FormControl>

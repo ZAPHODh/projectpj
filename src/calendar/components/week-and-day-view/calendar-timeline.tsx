@@ -1,7 +1,12 @@
+import { useCalendar } from "@/calendar/contexts/calendar";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
+
+
 export function CalendarTimeline() {
+    const { visibleHours } = useCalendar();
+
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
@@ -11,23 +16,25 @@ export function CalendarTimeline() {
 
     const getCurrentTimePosition = () => {
         const minutes = currentTime.getHours() * 60 + currentTime.getMinutes();
-        return (minutes / 1440) * 100;
+
+        const visibleStartMinutes = visibleHours.from * 60;
+        const visibleEndMinutes = visibleHours.to * 60;
+        const visibleRangeMinutes = visibleEndMinutes - visibleStartMinutes;
+
+        return ((minutes - visibleStartMinutes) / visibleRangeMinutes) * 100;
     };
 
     const formatCurrentTime = () => {
-        return format(currentTime, "hh:mm a");
+        return format(currentTime, "h:mm a");
     };
 
-    return (
-        <div
-            className="pointer-events-none absolute inset-x-0 z-50 border-t border-primary-600 dark:border-primary-700"
-            style={{ top: `${getCurrentTimePosition()}%` }}
-        >
-            <div className="absolute -left-1.5 -top-1.5 size-3 rounded-full bg-primary-600 dark:bg-primary-700"></div>
+    const currentHour = currentTime.getHours();
+    if (currentHour < visibleHours.from || currentHour >= visibleHours.to) return null;
 
-            <div className="absolute -left-18 flex w-16 -translate-y-1/2 justify-end bg-bg-primary pr-1 text-xs font-medium text-primary-600 dark:text-primary-700">
-                {formatCurrentTime()}
-            </div>
+    return (
+        <div className="pointer-events-none absolute inset-x-0 z-50 border-t border-primary" style={{ top: `${getCurrentTimePosition()}%` }}>
+            <div className="absolute left-0 top-0 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"></div>
+            <div className="absolute -left-18 flex w-16 -translate-y-1/2 justify-end bg-background pr-1 text-xs font-medium text-primary">{formatCurrentTime()}</div>
         </div>
     );
 }

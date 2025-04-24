@@ -1,40 +1,26 @@
 "use client";
 
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectItem,
-} from "@/components/ui/select";
+
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCalendar } from "../contexts/calendar";
 
 export function ChangeBadgeVariantInput() {
     const { badgeVariant, setBadgeVariant } = useCalendar();
 
     return (
-        <div className="space-y-2 ">
-            <p className="text-sm font-medium">Estilo dos agendamentos</p>
+        <div className="space-y-2">
+            <p className="text-sm font-semibold">Change badge variant</p>
 
             <Select value={badgeVariant} onValueChange={setBadgeVariant}>
-                <SelectTrigger className="w-full md:w-[250px]">
-                    <SelectValue placeholder="Selecione o estilo" />
+                <SelectTrigger className="w-48">
+                    <SelectValue />
                 </SelectTrigger>
 
-                <SelectContent align="end" position="popper" className="w-[200px]">
-                    <SelectItem value="dot">
-                        <span className="flex items-center gap-2">
-                            <div className="h-2 w-2 rounded-full bg-primary" />
-                            Exibição vetorizada
-                        </span>
-                    </SelectItem>
-
-                    <SelectItem value="colored">
-                        <span className="flex items-center gap-2">
-                            <div className="h-2 w-2 rounded-sm bg-blue-500" />
-                            Exibição colorida
-                        </span>
-                    </SelectItem>
+                <SelectContent>
+                    <SelectItem value="dot">Dot</SelectItem>
+                    <SelectItem value="colored">Colored</SelectItem>
+                    <SelectItem value="mixed">Mixed</SelectItem>
                 </SelectContent>
             </Select>
         </div>

@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     const { email, password } = parsed.data;
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/credentials-signin`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/credentials-signin`,
         {
             method: "POST",
             headers: {
@@ -30,7 +30,10 @@ export async function POST(request: NextRequest) {
             }),
         }
     );
-
+    if (!res.ok) {
+        console.log(await res.json())
+        NextResponse.json({}, { status: 401 });
+    }
     const user = await res.json();
 
     if (user && res.ok) {

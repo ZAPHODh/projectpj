@@ -21,10 +21,10 @@ export interface IProfessional {
     createdAt: Date;
     updatedAt: Date;
     picturePath: string | null;
-    // services: Service[];
-    // salon: Salon;
-    // sales: Sale[];
-    // Commission: Commission[];
+    services?: Service[];
+    salon?: Salon;
+    sales?: Sale[];
+    Commission: Commission[];
     schedules?: ISchedule[];
 }
 
@@ -36,6 +36,8 @@ export interface ISchedule {
     color: TEventColor;
     description: string;
     professional: IProfessional;
+    service: Service
+    customer: Customer
 }
 
 export interface ICalendarCell {

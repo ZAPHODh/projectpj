@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Toaster } from "@/components/ui/sonner"
 import { FontProvider } from '@/components/providers/font';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { Inter, Roboto_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme';
 import { FooterSection } from '@/components/ui/footer-section';
@@ -35,6 +35,7 @@ export default async function LocaleLayout({
     params: Promise<{ locale: string }>;
 }) {
     const session = await getServerSession();
+    const nonce = (await headers()).get('x-nonce')
     const cookieStore = await cookies()
     const font = cookieStore.get('font')?.value
     const { locale } = await params;
@@ -45,8 +46,9 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${inter.variable} ${roboto_mono.variable}`} suppressHydrationWarning>
             <head>
-                <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_PUB_ID} />
+                <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_PUB_ID} nonce='' />
                 <Adsense />
+
             </head>
             <body>
                 <SessionProvider initialSession={session}>
@@ -55,6 +57,7 @@ export default async function LocaleLayout({
                         defaultTheme="system"
                         enableSystem
                         disableTransitionOnChange
+                        nonce={nonce as string | undefined}
                     >
                         <FontProvider defaultFont={font || inter.variable}>
                             <NextIntlClientProvider>
@@ -62,8 +65,8 @@ export default async function LocaleLayout({
                                     <NavHeader />
                                     {children}
                                     <CookieBanner />
-                                    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
-                                    {/* <Analytics /> */}
+                                    <GoogleTagManager nonce={nonce as string | undefined} gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+                                    <Analytics nonce={nonce as string | undefined} />
                                     <FooterSection />
                                 </ZodProvider>
                             </NextIntlClientProvider>

@@ -18,6 +18,7 @@ import type { ISchedule } from "@/calendar/interfaces";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { formatDate } from "@/lib/helper";
+import { EditScheduleDialog } from "./edit-schedule";
 
 interface IProps {
     schedule: ISchedule;
@@ -83,9 +84,9 @@ export function ScheduleDetailsDialog({ schedule, children }: IProps) {
                 </div>
 
                 <DialogClose asChild>
-                    <Button type="button" variant="outline" className="mt-4">
-                        {t('buttons.close')}
-                    </Button>
+                    <EditScheduleDialog schedule={schedule}>
+                        {t('buttons.edit')}
+                    </EditScheduleDialog>
                 </DialogClose>
             </DialogContent>
         </Dialog>

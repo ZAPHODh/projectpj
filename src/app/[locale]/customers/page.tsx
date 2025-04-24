@@ -4,9 +4,11 @@ import { DisplayAdUnit, InArticleAd } from "@/components/ad-unit";
 import { getCustomerColumns } from "@/components/customers/column";
 import { CustomerDialog } from "@/components/customers/dialog";
 import { CustomerProvider } from "@/components/providers/customer";
+import { useSession } from "@/components/providers/session";
 import { DataTable } from "@/components/ui/data-table/table";
 import { createCustomerSchema, defaultCustomerValues, GetCustomerConfig } from "@/schemas/customers";
 import { useLocale, useMessages, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
@@ -26,6 +28,9 @@ const customerMock: Customer = {
 };
 
 export default function CustomerPage() {
+    const { session } = useSession()
+    const { push } = useRouter()
+    if (!session) push('/auth/signin')
     const [selectedRowData, setSelectedRowData] = useState<Customer | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const locale = useLocale();

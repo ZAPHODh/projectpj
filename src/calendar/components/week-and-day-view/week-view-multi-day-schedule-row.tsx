@@ -1,11 +1,10 @@
-import { Suspense, useMemo } from "react";
+import { useMemo } from "react";
 import { parseISO, startOfDay, startOfWeek, endOfWeek, addDays, differenceInDays, isBefore, isAfter } from "date-fns";
 
 
 
 import type { ISchedule } from "@/calendar/interfaces";
 import { MonthScheduleBadge } from "../month-view/mont-schedule-badge";
-
 
 interface IProps {
     selectedDate: Date;
@@ -101,16 +100,7 @@ export function WeekViewMultiDaySchedulesRow({ selectedDate, multiDaySchedules }
                                 position = "middle";
                             }
 
-                            return (
-                                <Suspense>
-                                    <MonthScheduleBadge
-                                        key={`${schedule.id}-${dayIndex}`}
-                                        schedule={schedule}
-                                        cellDate={startOfDay(day)}
-                                        position={position}
-                                    />
-                                </Suspense>
-                            );
+                            return <MonthScheduleBadge key={`${schedule.id}-${dayIndex}`} schedule={schedule} cellDate={startOfDay(day)} position={position} />;
                         })}
                     </div>
                 ))}

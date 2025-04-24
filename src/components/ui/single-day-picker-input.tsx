@@ -55,7 +55,9 @@ function SingleDayPickerInput({
                     {...props}
                 >
                     {value ? (
-                        <span>{format(value, labelVariant)}</span>
+                        <span>{format(value, labelVariant, {
+                            locale: fnsLocale
+                        })}</span>
                     ) : (
                         <span className="text-t-placeholder">{placeholder}</span>
                     )}

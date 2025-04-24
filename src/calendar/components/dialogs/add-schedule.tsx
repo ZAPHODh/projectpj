@@ -41,6 +41,13 @@ import type { TScheduleFormData } from "@/calendar/schema";
 import type { TimeValue } from "react-aria-components";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { Combobox } from "@/components/ui/input/combobox";
+
+import { useService } from "@/components/providers/service";
+import { IProfessional } from "@/calendar/interfaces";
+import { useCalendar } from "@/calendar/contexts/calendar";
+import { useSession } from "@/components/providers/session";
+import { toast } from "sonner";
 
 
 interface IProps {
@@ -50,18 +57,21 @@ interface IProps {
 }
 
 export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
+    const { session } = useSession()
+    const { selectedProfessionalId, professionals, services, setSchedules } = useCalendar();
     const t = useTranslations('calendar.dialog.add');
     const { isOpen, onClose, onToggle } = useDisclosure();
-
     const form = useForm<TScheduleFormData>({
         resolver: zodResolver(scheduleSchema),
         defaultValues: {
-            title: "",
+            customerId: "",
             description: "",
             startDate: startDate ?? new Date(),
             startTime: startTime ?? { hour: 9, minute: 0 },
             endDate: startDate ?? new Date(),
             endTime: startTime ?? { hour: 10, minute: 0 },
+            professionalId: selectedProfessionalId || '',
+            serviceId: '',
         },
     });
 
@@ -77,8 +87,23 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
         }
     }, [startDate, startTime, form]);
 
-    const onSubmit = (values: TScheduleFormData) => {
-        console.log("Form values:", values);
+    const onSubmit = async (values: TScheduleFormData) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/appointments`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+            body: JSON.stringify(values)
+        })
+        if (!res.ok) {
+            toast('erro', {
+                description: 'erro'
+            })
+        }
+        const data = await res.json()
+        const appointmnet = data.appointment
+        setSchedules((prev) => ({ ...prev, appointmnet }))
         onClose();
         form.reset();
     };
@@ -86,7 +111,6 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
     return (
         <Dialog open={isOpen} onOpenChange={onToggle}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{t('title')}</DialogTitle>
@@ -95,20 +119,15 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <FormField
-                            control={form.control}
-                            name="title"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t('fields.title.label')}</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder={t('fields.title.placeholder')} {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        <Combobox
+                            referenceId="customerId"
+                            datas={services || []}
+                            title={t('fields.customer.label')}
+                            placeholder={t('fields.customer.placeholder')}
+                            description={t('fields.customer.description')}
+                            chave="customerId"
 
+                        />
                         <div className="grid grid-cols-2 gap-4">
                             <FormField
                                 control={form.control}
@@ -118,6 +137,7 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
                                         <FormLabel>{t('fields.startDate.label')}</FormLabel>
                                         <FormControl>
                                             <SingleDayPickerInput
+                                                lang="pt-BR"
                                                 value={field.value}
                                                 onSelect={date => field.onChange(date as Date)}
                                                 placeholder={t('fields.startDate.placeholder')}
@@ -181,7 +201,25 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
                                 )}
                             />
                         </div>
-                        <FormField
+                        <div className="grid grid-cols-2 gap-4">
+                            <Combobox
+                                referenceId="professionalId"
+                                datas={professionals || []}
+                                title={t('fields.professional.label')}
+                                placeholder={t('fields.professional.placeholder')}
+                                description={t('fields.professional.description')}
+                                chave="professionalId"
+                            />
+                            <Combobox
+                                referenceId="serviceId"
+                                datas={services || []}
+                                title={t('fields.service.label')}
+                                placeholder={t('fields.service.placeholder')}
+                                description={t('fields.service.description')}
+                                chave="serviceId"
+                            />
+                        </div>
+                        {/* <FormField
                             control={form.control}
                             name="variant"
                             render={({ field }) => (
@@ -226,7 +264,7 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
                                     <FormMessage />
                                 </FormItem>
                             )}
-                        />
+                        /> */}
                         <FormField
                             control={form.control}
                             name="description"

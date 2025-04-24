@@ -347,6 +347,30 @@
                     "label": "Password",
                     "placeholder": "Enter your password here",
                     "description": "Enter your password"
+                },
+                "confirmPassword": {
+                    "label": "Confirm Password",
+                    "placeholder": "Confirm your password"
+                }
+            },
+            "password": {
+                "strength": {
+                    "enter": "Enter a password",
+                    "weak": "Weak password",
+                    "medium": "Medium password",
+                    "strong": "Strong password"
+                },
+                "requirements": {
+                    "length": "At least 8 characters",
+                    "number": "At least 1 number",
+                    "lowercase": "At least 1 lowercase letter",
+                    "uppercase": "At least 1 uppercase letter"
+                },
+                "errors": {
+                    "min": "Minimum 8 characters",
+                    "number": "Must contain a number",
+                    "lowercase": "Must contain a lowercase letter",
+                    "uppercase": "Must contain an uppercase letter"
                 }
             },
             "social": "Sign up with {provider}",
@@ -702,10 +726,6 @@
                 "title": "New Schedule",
                 "description": "Fill in the details of the new schedule",
                 "fields": {
-                    "title": {
-                        "label": "Title",
-                        "placeholder": "Schedule title"
-                    },
                     "startDate": {
                         "label": "Start Date",
                         "placeholder": "Select a date"
@@ -720,27 +740,20 @@
                     "endTime": {
                         "label": "End Time"
                     },
-                    "variant": {
-                        "label": "Identification Color",
-                        "placeholder": "Select a color",
-                        "options": {
-                            "blue": {
-                                "label": "Blue",
-                                "color": "Blue"
-                            },
-                            "green": {
-                                "label": "Green",
-                                "color": "Green"
-                            },
-                            "red": {
-                                "label": "Red",
-                                "color": "Red"
-                            },
-                            "purple": {
-                                "label": "Purple",
-                                "color": "Purple"
-                            }
-                        }
+                    "professional": {
+                        "label": "Professional",
+                        "placeholder": "Select a professional",
+                        "description": "Choose a professional for this schedule"
+                    },
+                    "service": {
+                        "label": "Service",
+                        "placeholder": "Select a service",
+                        "description": "Choose a service type"
+                    },
+                    "customer": {
+                        "label": "Customer",
+                        "placeholder": "Select a customer",
+                        "description": "Choose the customer"
                     },
                     "description": {
                         "label": "Description",
@@ -755,6 +768,46 @@
                     "required": "Required field",
                     "invalid_time": "Invalid time",
                     "time_order": "End time must be after start time"
+                }
+            },
+            "edit": {
+                "title": "Edit Schedule",
+                "description": "Update the appointment details below.",
+                "success": "Schedule updated successfully!",
+                "error": "There was an error updating the schedule.",
+                "fields": {
+                    "professional": {
+                        "label": "Professional",
+                        "placeholder": "Select a professional",
+                        "description": "Choose the professional responsible for the service"
+                    },
+                    "service": {
+                        "label": "Service",
+                        "placeholder": "Select a service",
+                        "description": "Choose the service to be performed"
+                    },
+                    "startDate": {
+                        "label": "Start Date",
+                        "placeholder": "Pick a start date"
+                    },
+                    "endDate": {
+                        "label": "End Date",
+                        "placeholder": "Pick an end date"
+                    },
+                    "startTime": {
+                        "label": "Start Time"
+                    },
+                    "endTime": {
+                        "label": "End Time"
+                    },
+                    "description": {
+                        "label": "Description",
+                        "placeholder": "Add some notes..."
+                    }
+                },
+                "buttons": {
+                    "cancel": "Cancel",
+                    "submit": "Save Changes"
                 }
             },
             "detail": {
@@ -775,7 +828,7 @@
                     }
                 },
                 "buttons": {
-                    "close": "Close"
+                    "edit": "Edit"
                 }
             }
         }

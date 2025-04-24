@@ -11,7 +11,6 @@ interface IProps {
 }
 
 export function DayViewMultiDaySchedulesRow({ selectedDate, multiDaySchedules }: IProps) {
-
     const dayStart = startOfDay(selectedDate);
     const dayEnd = endOfDay(selectedDate);
 
@@ -44,16 +43,16 @@ export function DayViewMultiDaySchedulesRow({ selectedDate, multiDaySchedules }:
                     const scheduleEnd = startOfDay(parseISO(schedule.endDate));
                     const currentDate = startOfDay(selectedDate);
 
-                    const scheduleTotalDays = differenceInDays(scheduleEnd, scheduleStart) + 1;
-                    const scheduleCurrentDay = differenceInDays(currentDate, scheduleStart) + 1;
+                    const totalDays = differenceInDays(scheduleEnd, scheduleStart) + 1;
+                    const currentDay = differenceInDays(currentDate, scheduleStart) + 1;
 
                     return (
                         <MonthScheduleBadge
                             key={schedule.id}
                             schedule={schedule}
                             cellDate={selectedDate}
-                            scheduleCurrentDay={scheduleCurrentDay}
-                            scheduleTotalDays={scheduleTotalDays}
+                            currentDay={currentDay}
+                            totalDays={totalDays}
                         />
                     );
                 })}

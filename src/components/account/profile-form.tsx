@@ -20,6 +20,7 @@ import { Calendar } from "../ui/calendar"
 
 import { formatDate, getFnsLocale } from "@/lib/helper"
 import { useLocale, useTranslations } from "next-intl"
+import { useSession } from "../providers/session"
 
 
 
@@ -28,6 +29,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 function ProfileForm() {
     const t = useTranslations('account.profileForm');
+    const { session } = useSession()
     const profileFormSchema = z.object({
         name: z
             .string()
@@ -60,7 +62,7 @@ function ProfileForm() {
         resolver: zodResolver(profileFormSchema),
         mode: "onChange",
         defaultValues: {
-            name: '',
+            name: session?.user.name || '',
             dob: new Date()
         }
     })

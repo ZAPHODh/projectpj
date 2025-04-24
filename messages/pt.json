@@ -348,6 +348,11 @@
                     "label": "Senha",
                     "placeholder": "Digite sua senha aqui.",
                     "description": "Digite sua senha"
+                },
+                "confirmPassword": {
+                    "label": "Confirmar Senha",
+                    "placeholder": "Digite a confirmação da sua senha aqui",
+                    "description": "Conirme sua senha"
                 }
             },
             "social": "Registrar com o {provider}",
@@ -358,6 +363,26 @@
             "error": {
                 "title": "Infelizmente não foi possível fazer o registro",
                 "description": "Verifique se o email já está cadastrado ou se a senha é válida."
+            },
+            "password": {
+                "strength": {
+                    "enter": "Digite uma senha",
+                    "weak": "Senha fraca",
+                    "medium": "Senha média",
+                    "strong": "Senha forte"
+                },
+                "requirements": {
+                    "length": "Pelo menos 8 caracteres",
+                    "number": "Pelo menos 1 número",
+                    "lowercase": "Pelo menos 1 letra minúscula",
+                    "uppercase": "Pelo menos 1 letra maiúscula"
+                },
+                "errors": {
+                    "min": "Mínimo de 8 caracteres",
+                    "number": "Deve conter um número",
+                    "lowercase": "Deve conter uma letra minúscula",
+                    "uppercase": "Deve conter uma letra maiúscula"
+                }
             }
         },
         "footer": {
@@ -703,45 +728,34 @@
                 "title": "Novo Agendamento",
                 "description": "Preencha os detalhes do novo agendamento",
                 "fields": {
-                    "title": {
-                        "label": "Título",
-                        "placeholder": "Título do agendamento"
-                    },
                     "startDate": {
-                        "label": "Data Inicial",
+                        "label": "Data de Início",
                         "placeholder": "Selecione uma data"
                     },
                     "endDate": {
-                        "label": "Data Final",
+                        "label": "Data de Término",
                         "placeholder": "Selecione uma data"
                     },
                     "startTime": {
-                        "label": "Hora Inicial"
+                        "label": "Hora de Início"
                     },
                     "endTime": {
-                        "label": "Hora Final"
+                        "label": "Hora de Término"
                     },
-                    "variant": {
-                        "label": "Cor de Identificação",
-                        "placeholder": "Selecione uma cor",
-                        "options": {
-                            "blue": {
-                                "label": "Azul",
-                                "color": "Azul"
-                            },
-                            "green": {
-                                "label": "Verde",
-                                "color": "Verde"
-                            },
-                            "red": {
-                                "label": "Vermelho",
-                                "color": "Vermelho"
-                            },
-                            "purple": {
-                                "label": "Roxo",
-                                "color": "Roxo"
-                            }
-                        }
+                    "professional": {
+                        "label": "Profissional",
+                        "placeholder": "Selecione um profissional",
+                        "description": "Escolha o profissional para este agendamento"
+                    },
+                    "service": {
+                        "label": "Serviço",
+                        "placeholder": "Selecione um serviço",
+                        "description": "Escolha o tipo de serviço"
+                    },
+                    "customer": {
+                        "label": "Cliente",
+                        "placeholder": "Selecione um cliente",
+                        "description": "Escolha um cliente"
                     },
                     "description": {
                         "label": "Descrição",
@@ -755,7 +769,47 @@
                 "validation": {
                     "required": "Campo obrigatório",
                     "invalid_time": "Hora inválida",
-                    "time_order": "Hora final deve ser após hora inicial"
+                    "time_order": "Hora de término deve ser após a hora de início"
+                }
+            },
+            "edit": {
+                "title": "Editar Agendamento",
+                "description": "Atualize os detalhes do agendamento abaixo.",
+                "success": "Agendamento atualizado com sucesso!",
+                "error": "Ocorreu um erro ao atualizar o agendamento.",
+                "fields": {
+                    "professional": {
+                        "label": "Profissional",
+                        "placeholder": "Selecione um profissional",
+                        "description": "Escolha o profissional responsável pelo serviço"
+                    },
+                    "service": {
+                        "label": "Serviço",
+                        "placeholder": "Selecione um serviço",
+                        "description": "Escolha o serviço a ser realizado"
+                    },
+                    "startDate": {
+                        "label": "Data de Início",
+                        "placeholder": "Escolha a data de início"
+                    },
+                    "endDate": {
+                        "label": "Data de Término",
+                        "placeholder": "Escolha a data de término"
+                    },
+                    "startTime": {
+                        "label": "Hora de Início"
+                    },
+                    "endTime": {
+                        "label": "Hora de Término"
+                    },
+                    "description": {
+                        "label": "Descrição",
+                        "placeholder": "Adicione alguma observação..."
+                    }
+                },
+                "buttons": {
+                    "cancel": "Cancelar",
+                    "submit": "Salvar Alterações"
                 }
             },
             "detail": {
@@ -776,7 +830,7 @@
                     }
                 },
                 "buttons": {
-                    "close": "Fechar"
+                    "edit": "Editar"
                 }
             }
         }

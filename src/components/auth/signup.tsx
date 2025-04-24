@@ -31,13 +31,14 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { useSession } from "../providers/session";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { PasswordInput } from "../ui/input/password";
 
 function SignUp({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
     const t = useTranslations('auth.signup');
-    const { setSession } = useSession();
+
     const router = useRouter();
     const form = useForm<z.infer<typeof signupSchema>>({
         resolver: zodResolver(signupSchema),
@@ -45,11 +46,17 @@ function SignUp({
             name: "",
             email: "",
             password: "",
+
         },
     });
-
+    const passwordRequirements = [
+        { regex: /.{8,}/, text: t('password.requirements.length') },
+        { regex: /[0-9]/, text: t('password.requirements.number') },
+        { regex: /[a-z]/, text: t('password.requirements.lowercase') },
+        { regex: /[A-Z]/, text: t('password.requirements.uppercase') },
+    ];
     async function onSubmit(values: z.infer<typeof signupSchema>) {
-        const res = await fetch(`/api/auth/credentials-register`, {
+        const res = await fetch(`/api/auth/credentials-signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -73,7 +80,7 @@ function SignUp({
     }
 
     return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
+        <div className={cn("flex flex-col", className)} {...props}>
             <Card className="shadow-none border-none">
                 <CardHeader>
                     <CardTitle className="text-2xl">{t('title')}</CardTitle>
@@ -122,19 +129,17 @@ function SignUp({
                                     <FormItem>
                                         <FormLabel>{t('form.password.label')}</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                type="password"
+                                            <PasswordInput
+                                                requirements={passwordRequirements}
+                                                showStrength={true}
                                                 placeholder={t('form.password.placeholder')}
                                                 {...field}
                                             />
                                         </FormControl>
-                                        <FormDescription>{t('form.password.description')}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-
-
                             <Separator />
                             <div>
                                 <Button variant="outline" className="w-full my-2 rounded">

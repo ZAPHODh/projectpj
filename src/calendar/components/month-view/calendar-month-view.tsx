@@ -18,7 +18,6 @@ export function CalendarMonthView({ singleDaySchedules, multiDaySchedules }: IPr
     const t = useTranslations('calendar.weekDays');
 
     const WEEK_DAYS = WEEK_DAY_KEYS.map(key => t(key));
-    console.log(WEEK_DAYS)
     const { selectedDate } = useCalendar();
 
     const allSchedules = [...multiDaySchedules, ...singleDaySchedules];

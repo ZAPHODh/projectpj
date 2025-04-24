@@ -17,14 +17,20 @@ import {
     differenceInMinutes,
     eachDayOfInterval,
     startOfDay,
+    startOfYear,
+    endOfYear,
     differenceInDays,
     Locale,
+    addYears,
+    subYears,
+    isSameYear,
+    isWithinInterval
 } from "date-fns";
 
-import type { TCalendarView } from "@/calendar/types";
+import type { TCalendarView, TVisibleHours, TWorkingHours } from "@/calendar/types";
 import type { ICalendarCell, ISchedule } from "@/calendar/interfaces";
 
-
+// ================ Header helper functions ================ //
 
 export function rangeText(view: TCalendarView, date: Date, locale?: Locale) {
     const formatString = "dd MMM yyyy";
@@ -32,6 +38,15 @@ export function rangeText(view: TCalendarView, date: Date, locale?: Locale) {
     let end: Date;
 
     switch (view) {
+        case "agenda":
+            start = startOfMonth(date);
+            end = endOfMonth(date);
+            break;
+        case "year":
+            start = startOfYear(date);
+            end = endOfYear(date);
+            break;
+
         case "month":
             start = startOfMonth(date);
             end = endOfMonth(date);
@@ -51,6 +66,8 @@ export function rangeText(view: TCalendarView, date: Date, locale?: Locale) {
 
 export function navigateDate(date: Date, view: TCalendarView, direction: "previous" | "next"): Date {
     const operations = {
+        agenda: direction === "next" ? addMonths : subMonths,
+        year: direction === "next" ? addYears : subYears,
         month: direction === "next" ? addMonths : subMonths,
         week: direction === "next" ? addWeeks : subWeeks,
         day: direction === "next" ? addDays : subDays,
@@ -61,6 +78,8 @@ export function navigateDate(date: Date, view: TCalendarView, direction: "previo
 
 export function getSchedulesCount(schedules: ISchedule[], date: Date, view: TCalendarView): number {
     const compareFns = {
+        agenda: isSameMonth,
+        year: isSameYear,
         day: isSameDay,
         week: isSameWeek,
         month: isSameMonth,
@@ -70,6 +89,11 @@ export function getSchedulesCount(schedules: ISchedule[], date: Date, view: TCal
 }
 
 // ================ Week and day view helper functions ================ //
+export function getCurrentSchedules(schedules: ISchedule[]) {
+    const now = new Date();
+    return schedules.filter(schedule => isWithinInterval(now, { start: parseISO(schedule.startDate), end: parseISO(schedule.endDate) })) || null;
+}
+
 
 export function groupSchedules(daySchedules: ISchedule[]) {
     const sortedSchedules = daySchedules.sort((a, b) => parseISO(a.startDate).getTime() - parseISO(b.startDate).getTime());
@@ -96,18 +120,53 @@ export function groupSchedules(daySchedules: ISchedule[]) {
     return groups;
 }
 
-export function getScheduleBlockStyle(schedule: ISchedule, day: Date, groupIndex: number, groupSize: number) {
+export function getScheduleBlockStyle(schedule: ISchedule, day: Date, groupIndex: number, groupSize: number, visibleHoursRange?: { from: number; to: number }) {
     const startDate = parseISO(schedule.startDate);
-    const dayStart = startOfDay(day);
+    const dayStart = new Date(day.setHours(0, 0, 0, 0));
     const scheduleStart = startDate < dayStart ? dayStart : startDate;
     const startMinutes = differenceInMinutes(scheduleStart, dayStart);
 
-    const top = (startMinutes / 1440) * 100;
+    let top;
+
+    if (visibleHoursRange) {
+        const visibleStartMinutes = visibleHoursRange.from * 60;
+        const visibleEndMinutes = visibleHoursRange.to * 60;
+        const visibleRangeMinutes = visibleEndMinutes - visibleStartMinutes;
+        top = ((startMinutes - visibleStartMinutes) / visibleRangeMinutes) * 100;
+    } else {
+        top = (startMinutes / 1440) * 100;
+    }
+
     const width = 100 / groupSize;
     const left = groupIndex * width;
 
     return { top: `${top}%`, width: `${width}%`, left: `${left}%` };
 }
+
+export function isWorkingHour(day: Date, hour: number, workingHours: TWorkingHours) {
+    const dayIndex = day.getDay() as keyof typeof workingHours;
+    const dayHours = workingHours[dayIndex];
+    return hour >= dayHours.from && hour < dayHours.to;
+}
+export function getVisibleHours(visibleHours: TVisibleHours, singleDaySchedules: ISchedule[]) {
+    let earliestScheduleHour = visibleHours.from;
+    let latestScheduleHour = visibleHours.to;
+
+    singleDaySchedules.forEach(event => {
+        const startHour = parseISO(event.startDate).getHours();
+        const endTime = parseISO(event.endDate);
+        const endHour = endTime.getHours() + (endTime.getMinutes() > 0 ? 1 : 0);
+        if (startHour < earliestScheduleHour) earliestScheduleHour = startHour;
+        if (endHour > latestScheduleHour) latestScheduleHour = endHour;
+    });
+
+    latestScheduleHour = Math.min(latestScheduleHour, 24);
+
+    const hours = Array.from({ length: latestScheduleHour - earliestScheduleHour }, (_, i) => i + earliestScheduleHour);
+
+    return { hours, earliestScheduleHour, latestScheduleHour };
+}
+
 
 // ================ Month view helper functions ================ //
 

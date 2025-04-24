@@ -39,7 +39,7 @@ export function UserNav() {
     }, [])
 
     if (!session) return (
-        <Button>
+        <Button asChild >
             <Link href={"/auth/signin"} >
                 {t('signin')}
             </Link>
@@ -58,9 +58,9 @@ export function UserNav() {
             <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">{session.user.name}</p>
+                        <p className="text-sm font-medium leading-none">{session.email}</p>
                         <p className="text-xs leading-none text-muted-foreground">
-                            {session.email}
+                            {session.user.name}
                         </p>
                     </div>
                 </DropdownMenuLabel>
