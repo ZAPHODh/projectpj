@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         }
     );
     if (!res.ok) {
-        console.log(await res.json())
+        console.log(res)
         NextResponse.json({}, { status: 401 });
     }
     const user = await res.json();

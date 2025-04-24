@@ -38,7 +38,7 @@ export default function CustomerPage() {
     const t = useTranslations('customer.page');
 
     return (
-        <CustomerProvider>
+        <CustomerProvider initialCustomers={[]}>
             <div className="space-y-6 container mx-auto">
                 <div className="p-4">
                     <h3 className="text-lg font-medium">{t('title')}</h3>

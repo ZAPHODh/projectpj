@@ -1,9 +1,11 @@
 "use client";
 
+
 import { SESSION_CHECK_INTERVAL } from "@/lib/auth/helper";
 import { Session } from "@/lib/auth/types";
-
 import { useRouter } from "next/navigation";
+
+
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 
 interface SessionProvider {
@@ -26,17 +28,17 @@ interface Props {
 const SessionProvider = ({ children, initialSession }: Props) => {
     const intervalRef = useRef<number>(0);
     const [session, setSession] = useState<Session | undefined>(initialSession);
-    const router = useRouter();
+    const { refresh } = useRouter();
 
     const logout = async () => {
         if (!session) return;
 
-        const res = await fetch("/api/auth/logout", { method: "POST" });
+        const res = await fetch("/api/auth/signout", { method: "POST" });
         const result = await res.json();
 
         if (res.ok && !!result?.success) {
             setSession(undefined);
-            router.refresh();
+            refresh();
         }
     };
 
@@ -47,7 +49,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
             if (!res.ok) {
                 clearInterval(intervalRef.current);
                 setSession(undefined);
-                router.refresh();
+                refresh();
             }
         }
     }
