@@ -1,81 +1,68 @@
-"use client";
+'use client';
 
 import { createContext, useContext, useEffect, useState } from "react";
+
 
 
 interface CustomerContextProps {
     customers: Customer[];
     setCustomers: React.Dispatch<React.SetStateAction<Customer[]>>;
-    loading: boolean;
     error: string | null;
     updateCustomer: (id: string, updates: Partial<Customer>) => Promise<void>;
     deleteCustomer: (id: string) => Promise<void>;
-    refreshCustomers: () => Promise<void>;
+}
+
+interface CustomerProviderProps {
+    children: React.ReactNode;
+    initialCustomers?: Customer[];
 }
 
 const CustomerContext = createContext<CustomerContextProps | undefined>(undefined);
 
-export const CustomerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [customers, setCustomers] = useState<Customer[]>([]);
-    const [loading, setLoading] = useState(true);
+export const CustomerProvider: React.FC<CustomerProviderProps> = ({
+    children,
+    initialCustomers = []
+}) => {
+    const [customers, setCustomers] = useState<Customer[]>(initialCustomers);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchCustomers = async () => {
-        try {
-            const res = await fetch("/api/customers");
-            if (!res.ok) throw new Error("Erro ao buscar clientes.");
-
-            const data = await res.json();
-            setCustomers(data.customers);
-        } catch (err) {
-            setError(err instanceof Error ? err.message : "Erro desconhecido.");
-        } finally {
-            setLoading(false);
-        }
+    const handleApiError = (error: unknown, defaultMessage: string) => {
+        const message = error instanceof Error ? error.message : defaultMessage;
+        setError(message);
+        console.error(message);
+        return message;
     };
-
-    useEffect(() => {
-        fetchCustomers();
-    }, []);
 
     const updateCustomer = async (id: string, updates: Partial<Customer>) => {
         try {
-            const res = await fetch(`/api/customers/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/customers/${id}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updates),
             });
 
-            if (!res.ok) throw new Error("Erro ao atualizar cliente.");
+            if (!res.ok) throw new Error("Erro ao atualizar cliente");
 
-            const updated = await res.json();
-            setCustomers(prev =>
-                prev.map(c => (c.id === id ? updated.customers : c))
-            );
+            const { customer } = await res.json();
+            setCustomers(prev => prev.map(c => (c.id === id ? customer : c)))
         } catch (err) {
-            console.error(err);
+            handleApiError(err, "Falha na atualização do cliente");
         }
     };
 
     const deleteCustomer = async (id: string) => {
         try {
-            const res = await fetch(`/api/customers/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/customers/${id}`, {
                 method: "DELETE",
             });
 
-            if (!res.ok) throw new Error("Erro ao deletar cliente.");
+            if (!res.ok) throw new Error("Erro ao excluir cliente");
 
             setCustomers(prev => prev.filter(c => c.id !== id));
+            setError(null);
         } catch (err) {
-            console.error(err);
+            handleApiError(err, "Falha na exclusão do cliente");
         }
-    };
-
-    const refreshCustomers = async () => {
-        setLoading(true);
-        await fetchCustomers();
     };
 
     return (
@@ -83,11 +70,9 @@ export const CustomerProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             value={{
                 customers,
                 setCustomers,
-                loading,
                 error,
                 updateCustomer,
                 deleteCustomer,
-                refreshCustomers,
             }}
         >
             {children}

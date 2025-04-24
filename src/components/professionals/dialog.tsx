@@ -8,9 +8,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createProfessionalSchema, defaultProfessionalValues, GetProfessionalConfig } from "@/schemas/professional";
 import { useLocale, useMessages } from "next-intl";
-import { useComissionRule } from "../providers/comission-rule";
 import { Button } from "../ui/button";
 import { useEffect } from "react";
+import { useProfessional } from "../providers/professional";
 
 type ProfessionalDialogProps = {
     isDialogOpen: boolean;
@@ -21,7 +21,7 @@ type ProfessionalDialogProps = {
 function ProfessionalDialog({ isDialogOpen, setIsDialogOpen, selectedRowData }: ProfessionalDialogProps) {
     const locale = useLocale()
     const messages = useMessages()
-    const { comissionRules } = useComissionRule()
+    const { commissionRules, } = useProfessional()
     const form = useForm<z.infer<typeof createProfessionalSchema>>({
         resolver: zodResolver(createProfessionalSchema),
         defaultValues: selectedRowData || defaultProfessionalValues,
@@ -48,7 +48,7 @@ function ProfessionalDialog({ isDialogOpen, setIsDialogOpen, selectedRowData }: 
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="space-y-4 py-4"
                     >
-                        <GenericFormsInput variants="single" fieldConfig={GetProfessionalConfig(comissionRules, 'type', locale, messages)} />
+                        <GenericFormsInput variants="single" fieldConfig={GetProfessionalConfig(commissionRules, 'type', locale, messages)} />
                     </form>
                     <DialogFooter>
                         <Button type="submit">
