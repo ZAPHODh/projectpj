@@ -31,6 +31,14 @@ export interface IProfessional {
 export interface ISchedule {
     id: number;
     startDate: string;
+    startTime: {
+        hour: number,
+        minute: number,
+    },
+    endTime: {
+        hour: number,
+        minute: number,
+    }
     endDate: string;
     title: string;
     color: TEventColor;

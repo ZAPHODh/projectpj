@@ -34,7 +34,7 @@ export function YearViewMonth({ month, schedules }: IProps) {
 
     const handleClick = () => {
         setSelectedDate(new Date(month.getFullYear(), month.getMonth(), 1));
-        push("/month-view");
+        push("/calendar/month-view");
     };
 
     return (

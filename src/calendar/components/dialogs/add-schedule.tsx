@@ -23,14 +23,7 @@ import {
     FormMessage,
 
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectItem,
-} from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { TimeInput } from "@/components/ui/time-input";
@@ -43,11 +36,11 @@ import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Combobox } from "@/components/ui/input/combobox";
 
-import { useService } from "@/components/providers/service";
-import { IProfessional } from "@/calendar/interfaces";
+
 import { useCalendar } from "@/calendar/contexts/calendar";
-import { useSession } from "@/components/providers/session";
-import { toast } from "sonner";
+
+
+import { useCreateSchedule } from "@/calendar/hooks/use-new-schedule";
 
 
 interface IProps {
@@ -57,7 +50,7 @@ interface IProps {
 }
 
 export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
-    const { session } = useSession()
+    const { createSchedule } = useCreateSchedule()
     const { selectedProfessionalId, professionals, services, setSchedules } = useCalendar();
     const t = useTranslations('calendar.dialog.add');
     const { isOpen, onClose, onToggle } = useDisclosure();
@@ -88,22 +81,7 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
     }, [startDate, startTime, form]);
 
     const onSubmit = async (values: TScheduleFormData) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/appointments`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${session?.accessToken}`,
-            },
-            body: JSON.stringify(values)
-        })
-        if (!res.ok) {
-            toast('erro', {
-                description: 'erro'
-            })
-        }
-        const data = await res.json()
-        const appointmnet = data.appointment
-        setSchedules((prev) => ({ ...prev, appointmnet }))
+        createSchedule(values)
         onClose();
         form.reset();
     };

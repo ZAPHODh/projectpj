@@ -1,5 +1,5 @@
 import { isToday } from "date-fns";
-import { useRouter } from "next/navigation";
+
 
 
 
@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 import type { ISchedule } from "@/calendar/interfaces";
 import { useCalendar } from "@/calendar/contexts/calendar";
+import { useRouter } from "@/i18n/navigation";
 
 interface IProps {
   day: number;
@@ -23,7 +24,7 @@ export function YearViewDayCell({ day, date, schedules }: IProps) {
 
   const handleClick = () => {
     setSelectedDate(date);
-    push("/day-view");
+    push("/calendar/day-view");
   };
 
   return (

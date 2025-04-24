@@ -36,8 +36,8 @@ import { scheduleSchema } from "@/calendar/schema";
 import type { TScheduleFormData } from "@/calendar/schema";
 import type { TimeValue } from "react-aria-components";
 import { useCalendar } from "@/calendar/contexts/calendar";
-import { useSession } from "@/components/providers/session";
 import type { ISchedule } from "@/calendar/interfaces";
+import { useUpdateSchedule } from "@/calendar/hooks/use-update-schedule";
 
 interface IProps {
     children: React.ReactNode;
@@ -45,8 +45,8 @@ interface IProps {
 }
 
 export function EditScheduleDialog({ children, schedule }: IProps) {
-    const { session } = useSession();
-    const { professionals, services, setSchedules } = useCalendar();
+    const { updateSchedule } = useUpdateSchedule()
+    const { professionals, services } = useCalendar();
     const t = useTranslations('calendar.dialog.edit');
     const { isOpen, onClose, onToggle } = useDisclosure();
 
@@ -93,22 +93,12 @@ export function EditScheduleDialog({ children, schedule }: IProps) {
 
     const onSubmit = async (values: TScheduleFormData) => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/appointments/${schedule.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${session?.accessToken}`,
-                },
-                body: JSON.stringify(values)
-            });
-
-            if (!res.ok) throw new Error('Failed to update schedule');
-
-            const data = await res.json();
-            setSchedules(prev => prev.map(s =>
-                s.id === schedule.id ? data.appointment : s
-            ));
-
+            updateSchedule({
+                ...schedule,
+                ...values,
+                startDate: values.startDate.toISOString(),
+                endDate: values.endDate.toISOString()
+            })
             toast.success(t('success'));
             onClose();
         } catch (error) {
