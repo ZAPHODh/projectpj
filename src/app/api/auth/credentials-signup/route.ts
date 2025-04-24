@@ -6,9 +6,8 @@ import { signupSchema } from "@/schemas/signup";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     const body = await request.json();
-    console.log(body)
     const parsed = signupSchema.safeParse(body);
     if (!parsed.success) {
         return NextResponse.json({
