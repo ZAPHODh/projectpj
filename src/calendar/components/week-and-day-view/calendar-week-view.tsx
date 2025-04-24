@@ -150,7 +150,6 @@ export function CalendarWeekView({ singleDaySchedules, multiDaySchedules }: IPro
                                     );
                                 })}
                             </div>
-
                             <CalendarTimeline />
                         </div>
                     </div>

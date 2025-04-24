@@ -35,7 +35,9 @@ export default function Page() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const locale = useLocale()
     const messages = useMessages();
+    function onNewItem(professional: Professional) {
 
+    }
     return (
         <div className="space-y-6 container mx-auto">
             <div className="p-4">
@@ -48,10 +50,12 @@ export default function Page() {
                 defaultValues: defaultProfessionalValues,
                 fieldConfig: GetProfessionalConfig(comissionRules, 'type', locale, messages),
                 schema: createProfessionalSchema
-            }} onNewItem={() => { }} handleRowClick={(row) => {
-                setSelectedRowData(row);
-                setIsDialogOpen(true);
-            }} />
+            }}
+                onNewItem={onNewItem}
+                handleRowClick={(row) => {
+                    setSelectedRowData(row);
+                    setIsDialogOpen(true);
+                }} />
             <ProfessionalDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} selectedRowData={selectedRowData} />
         </div>
     )

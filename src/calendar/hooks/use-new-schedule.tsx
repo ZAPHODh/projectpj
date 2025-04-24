@@ -4,7 +4,7 @@ import { useSession } from "@/components/providers/session";
 import { useCalendar } from "../contexts/calendar";
 import { ISchedule } from "../interfaces";
 import { toast } from "sonner";
-import { scheduleSchema, TScheduleFormData } from "../schema";
+import { scheduleSchema } from "../schema";
 
 export function useCreateSchedule() {
     const { setSchedules } = useCalendar();

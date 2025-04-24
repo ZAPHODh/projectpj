@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useRouter } from "next/navigation";
+
 import { format, isSameDay, parseISO, getDaysInMonth, startOfMonth } from "date-fns";
 
 
@@ -7,6 +7,7 @@ import { format, isSameDay, parseISO, getDaysInMonth, startOfMonth } from "date-
 import type { ISchedule } from "@/calendar/interfaces";
 import { useCalendar } from "@/calendar/contexts/calendar";
 import { YearViewDayCell } from "./year-view-day-cell";
+import { useRouter } from "@/i18n/navigation";
 
 
 interface IProps {

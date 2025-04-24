@@ -11,7 +11,7 @@ export function useUpdateSchedule() {
     const { setSchedules } = useCalendar();
     const { session } = useSession()
 
-    const updateSchedule = async (schedule: Partial<ISchedule>) => {
+    const updateSchedule = async (schedule: ISchedule) => {
         const newSchedule: ISchedule = schedule;
         newSchedule.startDate = new Date(schedule.startDate).toISOString();
         newSchedule.endDate = new Date(schedule.endDate).toISOString();

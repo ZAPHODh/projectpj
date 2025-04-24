@@ -6,7 +6,6 @@ export const getSchedules = async (token: string) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      cache: 'no-store',
     })
     if (!response.ok) throw new Error('Erro na requisição')
     return await response.json()
@@ -22,7 +21,6 @@ export const getProfessionals = async (token: string) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      cache: 'no-store',
     })
     if (!response.ok) throw new Error('Erro na requisição')
     return await response.json()
@@ -37,8 +35,7 @@ export const getServices = async (token: string) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/services`, {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
-      cache: 'no-store',
+      }
     })
     if (!response.ok) throw new Error('Erro na requisição')
     return await response.json()

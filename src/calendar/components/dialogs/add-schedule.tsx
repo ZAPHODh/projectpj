@@ -81,7 +81,11 @@ export function AddScheduleDialog({ children, startDate, startTime }: IProps) {
     }, [startDate, startTime, form]);
 
     const onSubmit = async (values: TScheduleFormData) => {
-        createSchedule(values)
+        createSchedule({
+            ...values,
+            startDate: values.startDate.toISOString(),
+            endDate: values.endDate.toISOString(),
+        })
         onClose();
         form.reset();
     };
