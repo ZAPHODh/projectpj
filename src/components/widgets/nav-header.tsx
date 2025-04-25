@@ -16,24 +16,29 @@ export default function NavHeader() {
 
     return (
         <div className="border-b">
-            <div className="flex h-16 items-center px-4">
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 hover:cursor-pointer">
-                    <Link href="/">PROJECT</Link>
-                </h1>
+            <div className="flex h-16 items-center justify-between md:justify-none px-4">
+                <div className="flex items-center gap-2">
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 hover:cursor-pointer">
+                        <Link href="/">PROJECT</Link>
+                    </h1>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex">
-                    <MainNav className="mx-6" />
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex">
+                        <MainNav className="mx-6" />
+                    </div>
                 </div>
 
                 {/* Mobile Hamburger */}
-                <div className="flex md:hidden ml-auto">
-                    <MobileNav />
-                </div>
+
 
                 {/* UserNav sempre à direita */}
-                <div className="ml-auto hidden md:flex items-center space-x-4">
-                    <UserNav />
+                <div className="flex items-center gap-2">
+                    <div className="ml-auto flex items-center space-x-4">
+                        <UserNav />
+                    </div>
+                    <div className="flex md:hidden ml-auto">
+                        <MobileNav />
+                    </div>
                 </div>
             </div>
         </div>
