@@ -142,9 +142,9 @@ function SignUp({
                             />
                             <Separator />
                             <div>
-                                <Button variant="outline" className="w-full my-2 rounded">
+                                <Button variant="outline" className="w-full my-2 rounded gap-2">
                                     <svg
-                                        className="w-6 h-6 text-gray-800 dark:text-white"
+                                        className="w-4 h-4 text-gray-800 dark:text-white"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -160,8 +160,8 @@ function SignUp({
                                     </svg>
                                     {t('social', { provider: "Google" })}
                                 </Button>
-                                <Button variant="outline" className="w-full my-2 rounded">
-                                    <Apple />
+                                <Button variant="outline" className="w-full my-2 rounded gap-2">
+                                    <Apple className="w-4 h-4" />
                                     {t('social', { provider: "Apple" })}
                                 </Button>
                             </div>

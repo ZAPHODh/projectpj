@@ -332,7 +332,7 @@
         },
         "signup": {
             "title": "Crie sua conta",
-            "description": "Preencha seus dados para se registrar em nossa página.",
+            "description": "Preenche os dados para registrar-se...",
             "form": {
                 "name": {
                     "label": "Nome Completo",
@@ -355,7 +355,7 @@
                     "description": "Conirme sua senha"
                 }
             },
-            "social": "Registrar com o {provider}",
+            "social": "Registrar-se com o {provider}",
             "submit": "Registrar",
             "hasAccount": "Já tem uma conta?",
             "login": "Faça login",
@@ -366,7 +366,7 @@
             },
             "password": {
                 "strength": {
-                    "enter": "Digite uma senha",
+                    "enter": "A senha deve conter",
                     "weak": "Senha fraca",
                     "medium": "Senha média",
                     "strong": "Senha forte"

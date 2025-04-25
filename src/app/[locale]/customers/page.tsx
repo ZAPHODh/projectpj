@@ -28,9 +28,6 @@ const customerMock: Customer = {
 };
 
 export default function CustomerPage() {
-    const { session } = useSession()
-    const { push } = useRouter()
-    if (!session) push('/auth/signin')
     const [selectedRowData, setSelectedRowData] = useState<Customer | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const locale = useLocale();

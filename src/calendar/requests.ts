@@ -1,6 +1,6 @@
 'use server'
 
-export const getSchedules = async (token: string) => {
+export const getSchedules = async (token?: string) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/appointments`, {
       headers: {
@@ -15,7 +15,7 @@ export const getSchedules = async (token: string) => {
   }
 }
 
-export const getProfessionals = async (token: string) => {
+export const getProfessionals = async (token?: string) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/professionals`, {
       headers: {
@@ -30,7 +30,7 @@ export const getProfessionals = async (token: string) => {
   }
 }
 
-export const getServices = async (token: string) => {
+export const getServices = async (token?: string) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/services`, {
       headers: {

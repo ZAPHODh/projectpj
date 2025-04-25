@@ -65,6 +65,7 @@ export function MainNav({
                 {t('finance')}
             </Link>
             <Link
+
                 href="/professionals"
                 className={cn(
                     "text-sm font-medium transition-colors hover:text-primary",
@@ -94,6 +95,7 @@ export function MainNav({
         </nav>
     )
 }
+
 function MobileNav() {
     const t = useTranslations("header")
     const pathname = usePathname()

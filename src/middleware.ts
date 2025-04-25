@@ -1,108 +1,160 @@
 import createMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
+import { SESSION_COOKIE_NAME } from '@/lib/auth/helper';
 import { routing } from './i18n/routing';
+import { decode } from './lib/auth/server-session';
 
-export default createMiddleware(routing);
+
+
+
+const intlMiddleware = createMiddleware(routing);
+
+const protectedRoutes = ['/calendar', '/customer', '/professionals', '/finance', '/account'];
+const publicRoutes = ['/auth', '/'];
+
+export default async function middleware(req: NextRequest) {
+    const pathname = req.nextUrl.pathname;
+
+    // Extrair locale e caminho interno
+    const pathSegments = pathname.split('/').filter(Boolean);
+    const [maybeLocale] = pathSegments;
+    const hasLocale = routing.locales.includes(maybeLocale as "en" | "pt" | "zh");
+
+    const locale = hasLocale ? maybeLocale : routing.defaultLocale;
+    const internalPath = hasLocale
+        ? `/${pathSegments.slice(1).join('/')}`
+        : pathname;
+
+    const isProtectedRoute = protectedRoutes.some(route =>
+        internalPath.startsWith(route)
+    );
+    const isPublicRoute = publicRoutes.includes(internalPath);
+
+    const cookie = req.cookies.get(SESSION_COOKIE_NAME)?.value;
+    const session = await decode(cookie);
+    if (isProtectedRoute && !session?.user.id) {
+        const url = new URL(`/${locale}/auth/signin`, req.url);
+        return NextResponse.redirect(url);
+    }
+
+    if (isPublicRoute && session?.user.id && !internalPath.startsWith('/calendar')) {
+        const url = new URL(`/${locale}/calendar/week-view`, req.url);
+        return NextResponse.redirect(url);
+    }
+
+    return intlMiddleware(req);
+}
 
 export const config = {
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
-    matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+    matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)']
 };
 
 
-// import { SESSION_COOKIE_NAME } from "@/lib/auth/helper";
-// import { decode } from "@/lib/auth/server-session";
-
-// import { NextResponse } from "next/server";
 // import createMiddleware from 'next-intl/middleware';
 // import { routing } from './i18n/routing';
-// import { NextRequest } from 'next/server';
-
-// const intlMiddleware = createMiddleware(routing);
-// const PROTECTED_API_ROUTES = [
-//     '/api/schedulers',
-//     '/api/import-customers',
-//     '/api/professionals',
-//     '/api/services'
-// ];
-// export default async function middleware(request: NextRequest) {
-//     const { pathname } = request.nextUrl;
-//     const isProtectedRoute = PROTECTED_API_ROUTES.some((route) =>
-//         pathname.startsWith(route)
-//     );
-
-//     if (isProtectedRoute) {
-//         const cookie = request.cookies.get(SESSION_COOKIE_NAME);
-
-//         if (!cookie) {
-//             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-//         }
-
-//         const session = await decode(cookie.value);
-//         if (!session) {
-//             const response = NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-//             response.cookies.delete(SESSION_COOKIE_NAME);
-//             return response;
-//         }
-
-//         return NextResponse.next();
-//     }
-
-//     return intlMiddleware(request);
-// }
-
-// export const config = {
-//     matcher: [
-//         '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
-//         '/api/schedulers/:path*',
-//         '/api/import-customers/:path*',
-//         '/api/professionals/:path*',
-//         '/api/services/:path*'
-//     ]
-// };
-
-// import { NextResponse, NextRequest } from 'next/server';
-// import createIntlMiddleware from 'next-intl/middleware';
+// import createMiddleware from 'next-intl/middleware';
+// import { cookies } from "next/headers"
+// import { NextRequest, NextResponse } from "next/server"
+// import { SESSION_COOKIE_NAME } from "./lib/auth/helper"
+// import { decode } from "./lib/auth/server-session"
 // import { routing } from './i18n/routing';
 
+// export default createMiddleware(routing);
 
-// const intlMiddleware = createIntlMiddleware(routing);
+// import createMiddleware from 'next-intl/middleware';
+// import { NextRequest, NextResponse } from 'next/server';
+// import { routing } from './i18n/routing';
 
+// const intlMiddleware = createMiddleware(routing);
 
-// function generateNonce() {
-//     return Buffer.from(crypto.randomUUID()).toString('base64');
+// const protectedRoutes = ['/account', '/calendar', '/finance', '/professionals'];
+
+// function isProtectedPath(pathname: string): boolean {
+//     const parts = pathname.split('/').filter(p => p !== '');
+//     if (parts.length > 0 && routing.locales.includes(parts[0] as 'en' | 'pt' | 'zh')) {
+//         const pathWithoutLocale = '/' + parts.slice(1).join('/');
+//         return protectedRoutes.some(route => pathWithoutLocale.startsWith(route));
+//     }
+//     return protectedRoutes.some(route => pathname.startsWith(route));
 // }
 
-// export default function middleware(request: NextRequest) {
-//     const nonce = generateNonce();
-//     // middleware.ts (trecho atualizado)
-//     const cspHeader = `
-//     default-src 'self';
-//     script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://www.google-analytics.com;
-//     connect-src 'self' https://ep1.adtrafficquality.google https://ep2.adtraffi.cquality.google https://www.google-analytics.com;
-//     frame-src https://googleads.g.doubleclick.net https://www.googletagmanager.com https://ep2.adtraffi.cquality.google https://www.google.com;
-//     style-src 'self' 'nonce-${nonce}' 'sha256-udQJaD2iLjLPwDBs5CIgWma5W3O8BHOI9Sy+17DR6tk=';
-//     img-src 'self' blob: data: https://www.google-analytics.com https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google;
-//     font-src 'self';
-//     object-src 'none';
-//     base-uri 'self';
-//     upgrade-insecure-requests;
-// `.replace(/\s{2,}/g, ' ').trim();
-
-
-
-//     const requestHeaders = new Headers(request.headers);
-//     requestHeaders.set('x-nonce', nonce);
-//     const response = intlMiddleware(new NextRequest(request, {
-//         headers: requestHeaders
-//     }));
-
-//     response.headers.set('Content-Security-Policy', cspHeader);
-
-//     return response;
+// function getLocaleFromPath(pathname: string): string {
+//     const parts = pathname.split('/').filter(p => p !== '');
+//     return parts.length > 0 && routing.locales.includes(parts[0] as 'en' | 'pt' | 'zh')
+//         ? parts[0]
+//         : 'en';
 // }
 
+// async function checkSession(request: NextRequest) {
+//     const res = await fetch(new URL('/api/auth/session', request.url), {
+//         method: 'POST',
+//         headers: request.headers,
+//     });
+
+//     if (!res.ok) {
+//         return false;
+//     }
+
+//     const session = await res.json();
+//     return !!session.user?.id;
+// }
+
+// export default async function middleware(request: NextRequest) {
+//     const intlResponse = intlMiddleware(request);
+
+//     if ([307, 308].includes(intlResponse.status)) {
+//         return intlResponse;
+//     }
+
+//     const { pathname } = request.nextUrl;
+//     const locale = getLocaleFromPath(pathname);
+
+//     if (isProtectedPath(pathname)) {
+//         const isSessionValid = await checkSession(request);
+
+//         if (!isSessionValid) {
+//             const url = request.nextUrl.clone();
+//             url.pathname = `/${locale}/auth/signin`;
+//             return NextResponse.redirect(url);
+//         }
+//     }
+
+//     return intlResponse;
+// }
+
+// const protectedRoutes = ['/calendar', 'customer', 'professionals', 'finance', 'account']
+// const publicRoutes = ['/auth', '/']
+
+// export default async function middleware(req: NextRequest) {
+//     const intlMiddleware = createMiddleware(routing);
+//     if (intlMiddleware) return intlMiddleware;
+
+//     const path = req.nextUrl.pathname
+//     const isProtectedRoute = protectedRoutes.includes(path)
+//     const isPublicRoute = publicRoutes.includes(path)
+
+
+//     const cookie = (await cookies()).get(SESSION_COOKIE_NAME)?.value
+//     const session = await decode(cookie)
+
+//     if (isProtectedRoute && !session?.user.id) {
+//         return NextResponse.redirect(new URL('/auth/signin', req.nextUrl))
+//     }
+
+
+//     if (
+//         isPublicRoute &&
+//         session?.user.id &&
+//         !req.nextUrl.pathname.startsWith('/account')
+//     ) {
+//         return NextResponse.redirect(new URL('/account', req.nextUrl))
+//     }
+
+//     return NextResponse.next()
+// }
 // export const config = {
+//     // Match all pathnames except for
+//     // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
+//     // - … the ones containing a dot (e.g. `favicon.ico`)
 //     matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
 // };
