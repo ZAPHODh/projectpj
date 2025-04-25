@@ -6,6 +6,6 @@ import { cookies } from "next/dist/server/request/cookies";
 
 export async function POST() {
     (await cookies()).delete(SESSION_COOKIE_NAME);
-
+    console.log('cookie deletado')
     return NextResponse.json({ success: true }, { status: 200 });
 }

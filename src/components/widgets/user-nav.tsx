@@ -80,7 +80,7 @@ export function UserNav() {
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => logout()}>
                     Log out
                     <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
                 </DropdownMenuItem>

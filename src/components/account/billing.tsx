@@ -30,18 +30,7 @@ function Billing() {
         <div className="container mx-auto px-4 py-6 md:px-6 2xl:max-w-[1400px]">
             <div className="mx-auto max-w-4xl">
                 {/* Header */}
-                <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row">
-                    <div>
-                        <h1 className="text-2xl font-semibold">Billing & Subscription</h1>
-                        <p className="text-muted-foreground text-sm">
-                            Manage your subscription and billing details
-                        </p>
-                    </div>
-                    <Button variant="outline">
-                        <Settings className="mr-2 size-4" />
-                        Billing Settings
-                    </Button>
-                </div>
+
 
                 {/* Current Plan */}
                 <Card className="mb-8 p-0">
@@ -59,7 +48,7 @@ function Billing() {
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 <Button variant="outline">Change Plan</Button>
-                                <Button variant="destructive">Cancel Plan</Button>
+                                <Button variant="destructive" className="text-white">Cancel Plan</Button>
                             </div>
                         </div>
 
@@ -68,22 +57,22 @@ function Billing() {
                                 <div className="mb-2 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <Zap className="text-primary size-4" />
-                                        <span className="text-sm font-medium">API Requests</span>
+                                        <span className="text-sm font-medium">Professionals Number</span>
                                     </div>
-                                    <span className="text-sm">8,543 / 10,000</span>
+                                    <span className="text-sm">8 / 10</span>
                                 </div>
-                                <Progress value={85.43} className="h-2" />
+                                <Progress value={80} className="h-2" />
                             </div>
 
                             <div>
                                 <div className="mb-2 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <RefreshCw className="text-primary size-4" />
-                                        <span className="text-sm font-medium">Monthly Syncs</span>
+                                        <span className="text-sm font-medium">Services Number</span>
                                     </div>
-                                    <span className="text-sm">143 / 200</span>
+                                    <span className="text-sm">23 / 50</span>
                                 </div>
-                                <Progress value={71.5} className="h-2" />
+                                <Progress value={46} className="h-2" />
                             </div>
                         </div>
                     </CardContent>

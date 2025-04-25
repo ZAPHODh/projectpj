@@ -12,9 +12,13 @@ export const verifySession = cache(async () => {
     const locale = await getLocale()
     const session = await decode(cookie)
 
-    if (!session?.user.id) {
-        redirect({ href: '/auth/signin', locale })
-    }
 
-    return { isAuth: true, userId: session?.user.id }
+    return { isAuth: true, session }
+})
+
+export const getUser = cache(async () => {
+    const { session } = await verifySession()
+    if (!session) return null
+    const user = session.user
+    return user
 })

@@ -8,11 +8,13 @@ export default function Page() {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h3 className="text-lg font-medium">{t('title')}</h3>
-                <p className="text-sm text-muted-foreground">
-                    {t('description')}
-                </p>
+            <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row">
+                <div>
+                    <h1 className="text-2xl font-semibold">Billing & Subscription</h1>
+                    <p className="text-muted-foreground text-sm">
+                        Manage your subscription and billing details
+                    </p>
+                </div>
             </div>
             <Separator />
             <Billing />

@@ -16,6 +16,7 @@ import Analytics from "@/components/analytics";
 import Adsense from "@/components/adsense";
 import { GoogleTagManager } from "@next/third-parties/google";
 import CookieBanner from '@/components/widgets/cookie-consent';
+import { verifySession } from '@/lib/auth/dal';
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-inter',
@@ -34,7 +35,7 @@ export default async function LocaleLayout({
     children: React.ReactNode;
     params: Promise<{ locale: string }>;
 }) {
-    const session = await getServerSession();
+    const { session } = await verifySession()
     const nonce = (await headers()).get('x-nonce')
     const cookieStore = await cookies()
     const font = cookieStore.get('font')?.value

@@ -35,7 +35,7 @@ const SessionProvider = ({ children, initialSession }: Props) => {
 
         const res = await fetch("/api/auth/signout", { method: "POST" });
         const result = await res.json();
-
+        console.log(result)
         if (res.ok && !!result?.success) {
             setSession(undefined);
             refresh();
