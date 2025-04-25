@@ -101,7 +101,7 @@ function MobileNav() {
                     <Menu className="h-6 w-6" />
                 </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-64">
+            <SheetContent side="right" className="w-64" >
                 <SheetTitle className="hidden"></SheetTitle>
                 <nav className="flex flex-col space-y-4 mt-6">
                     <Link
