@@ -661,7 +661,7 @@
             "profile": "Perfil",
             "salon": "Salão",
             "apparence": "Aparência",
-            "professionals": "Profissionais",
+            "billing": "Planos",
             "layout": {
                 "heading": "Configuração",
                 "description": "Configure sua conta da forma que achar melhor"

@@ -659,7 +659,7 @@
             "profile": "Profile",
             "salon": "Salon",
             "apparence": "Apparence",
-            "professionals": "Professionals",
+            "billing": "Billing",
             "layout": {
                 "heading": "Settings",
                 "description": "Configure your account in your way"

@@ -41,8 +41,8 @@ export default async function SettingsLayout({ children, params }: SettingsLayou
             href: "/account/apparence",
         },
         {
-            title: t('professionals'),
-            href: "/account/professionals",
+            title: t('billing'),
+            href: "/account/billing",
         },
 
     ]
