@@ -1,4 +1,4 @@
-import { SESSION_COOKIE_NAME } from "@/lib/auth/helper";
+import { SESSION_COOKIE_MAX_AGE, SESSION_COOKIE_NAME } from "@/lib/auth/helper";
 import { decode, encode } from "@/lib/auth/server-session";
 import { Session } from "@/lib/auth/types";
 
@@ -28,7 +28,7 @@ export async function POST() {
     const session: Session | null = await res.json();
     if (session && res.ok) {
         const newSession = await encode(session)
-        const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+        const expires = new Date(Date.now() + SESSION_COOKIE_MAX_AGE)
 
         const cookieStore = await cookies()
         cookieStore.set('session', newSession, {

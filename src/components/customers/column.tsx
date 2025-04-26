@@ -5,7 +5,6 @@ import { createTranslator } from "next-intl";
 
 export function getCustomerColumns(locale: string, messages: Record<string, any>): ColumnDef<Customer>[] {
     const t = createTranslator({ locale, namespace: "customer", messages });
-
     return [
         {
             id: "select",
