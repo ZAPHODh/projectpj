@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         const buffer = await file.arrayBuffer();
         const result = await processFile(buffer, file.name);
 
-        if (result.errors.length > 0) {
+        if (result.customers.length === 0) {
             return NextResponse.json(
                 { message: 'Erros de validação', errors: result.errors, customers: result.customers },
                 { status: 422 }
