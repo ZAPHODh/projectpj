@@ -9,6 +9,7 @@ interface ProfessionalContextProps {
     commissionRules: CommissionRule[];
     setProfessionals: React.Dispatch<React.SetStateAction<Professional[]>>;
     error: string | null;
+    createProfessional: (newProfessional: Omit<Professional, 'id'>) => Promise<void>;
     updateProfessional: (updates: Partial<Professional>) => Promise<void>;
     deleteProfessional: (id: string) => Promise<void>;
 }
@@ -29,14 +30,12 @@ export const ProfessionalProvider: React.FC<ProfessionalProviderProps> = ({
     const [professionals, setProfessionals] = useState<Professional[]>(initialProfessionals);
     const [commissionRules] = useState<CommissionRule[]>(initialCommissionRules);
     const [error, setError] = useState<string | null>(null);
-
     const handleApiError = (error: unknown, defaultMessage: string) => {
         const message = error instanceof Error ? error.message : defaultMessage;
         setError(message);
         console.error(message);
         return message;
     };
-
     const updateProfessional = async (updates: Partial<Professional>) => {
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/professionals/${updates.id}`, {
@@ -68,7 +67,23 @@ export const ProfessionalProvider: React.FC<ProfessionalProviderProps> = ({
             handleApiError(err, "Falha na exclusão do profissional");
         }
     };
+    const createProfessional = async (newProfessional: Omit<Professional, 'id'>) => {
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/professionals`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newProfessional),
+            });
 
+            if (!res.ok) throw new Error("Erro ao criar profissional");
+
+            const { professional } = await res.json();
+            setProfessionals(prev => [...prev, professional]);
+            setError(null);
+        } catch (err) {
+            handleApiError(err, "Falha ao criar profissional");
+        }
+    };
     return (
         <ProfessionalContext.Provider
             value={{
@@ -76,6 +91,7 @@ export const ProfessionalProvider: React.FC<ProfessionalProviderProps> = ({
                 setProfessionals,
                 commissionRules,
                 error,
+                createProfessional,
                 updateProfessional,
                 deleteProfessional,
             }}

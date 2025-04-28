@@ -1,12 +1,16 @@
 import { ALLOWED_MIME_TYPES } from "@/lib/service/import/helper";
 import { processFile } from "@/lib/service/import/process-file";
+import { getLocale } from "next-intl/server";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
+    const session = (await cookies()).get('session')?.value
+    const locale = await getLocale()
+    if (!session) return NextResponse.redirect(`${locale}/auth/signin`)
     try {
         const formData = await request.formData();
         const file = formData.get('file') as File | null;
-        console.log(file)
         if (!file) {
             return NextResponse.json(
                 { message: 'Nenhum arquivo enviado' },
@@ -24,14 +28,22 @@ export async function POST(request: Request) {
 
         const buffer = await file.arrayBuffer();
         const result = await processFile(buffer, file.name);
-        console.log(result)
+
         if (result.errors.length > 0) {
             return NextResponse.json(
                 { message: 'Erros de validação', errors: result.errors, customers: result.customers },
                 { status: 422 }
             );
         }
-        console.log(result.customers)
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/customers`, {
+            headers: {
+                Authorization: `Bearer ${session}`,
+            }
+        })
+        if (!res.ok) {
+            return NextResponse.json({ message: 'The customers cant be created' }, { status: 404 })
+        }
         return NextResponse.json({ customers: result.customers });
 
     } catch (error) {

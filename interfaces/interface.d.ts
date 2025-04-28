@@ -132,7 +132,7 @@ interface Service {
     professional?: Professional;
     saleItems: SaleItem[];
     appointments: Appointment[];
-    commissionRules: CommissionRule[];
+    commissionRules: CommissionRule;
 }
 
 interface Product {
