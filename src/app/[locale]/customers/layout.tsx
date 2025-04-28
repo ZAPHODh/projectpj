@@ -12,6 +12,7 @@ export default async function Layout({ children }: {
     const session = await getServerSession()
     const locale = await getLocale()
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/customers`, {
+        method: "GET",
         headers: {
             Authorization: `Bearer ${session?.accessToken}`,
             'Content-Type': 'application/json',
