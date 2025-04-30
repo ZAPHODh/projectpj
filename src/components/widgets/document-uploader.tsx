@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner";
 import { useCustomer } from "../providers/customer";
+import { useSession } from "../providers/session";
 
 
 export function DocumentUploader(props: { setOpen: (open: boolean) => void }) {
     const t = useTranslations('customer.import.DocumentUploader');
+    const { session } = useSession()
     const { setCustomers } = useCustomer()
     const {
         fileName,
@@ -30,6 +32,9 @@ export function DocumentUploader(props: { setOpen: (open: boolean) => void }) {
         try {
             const res = await fetch("/api/import-customers", {
                 method: "POST",
+                headers: {
+                    Authorization: `Bearer ${session?.accessToken}`,
+                },
                 body: formData,
             });
 
@@ -50,6 +55,7 @@ export function DocumentUploader(props: { setOpen: (open: boolean) => void }) {
     return (
         <>
             <div className="space-y-4">
+
                 <h3 className="text-lg font-medium">{t('title')}</h3>
                 <div
                     className={cn(
@@ -80,7 +86,6 @@ export function DocumentUploader(props: { setOpen: (open: boolean) => void }) {
                         </p>
                     )}
                 </div>
-
                 <input
                     type="file"
                     accept=".json,.csv"

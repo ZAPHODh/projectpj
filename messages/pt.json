@@ -1,4 +1,68 @@
 {
+    "postalCode": {
+        "label": "Código Postal",
+        "placeholder": {
+            "default": "Digite o código postal",
+            "br": "00000-000",
+            "us": "00000-0000",
+            "uk": "AA0 0AA"
+        },
+        "description": {
+            "br": "Código de Endereçamento Postal (CEP)",
+            "us": "Código postal americano (ZIP)",
+            "uk": "Código postal britânico",
+            "default": "Código postal"
+        },
+        "errors": {
+            "required": "O código postal é obrigatório",
+            "invalid": {
+                "br": "O CEP deve estar no formato 00000-000",
+                "us": "O ZIP deve estar no formato 00000 ou 00000-0000",
+                "uk": "Formato de código postal britânico inválido",
+                "default": "Formato de código postal inválido"
+            }
+        },
+        "lookupFailed": "Não foi possível encontrar o endereço para este código postal",
+        "lookupSuccess": "Endereço encontrado"
+    },
+    "address": {
+        "street": "Rua",
+        "neighborhood": "Bairro",
+        "city": "Cidade",
+        "state": "Estado",
+        "country": "País"
+    },
+    "salon": {
+        "config": {
+            "title": "Configuração do Salão",
+            "description": "Atualize as informações básicas e horários de funcionamento do seu salão",
+            "sections": {
+                "basicInfo": "Informações Básicas",
+                "hoursConfig": "Configuração de Horários"
+            },
+            "fields": {
+                "name": {
+                    "label": "Nome do Salão",
+                    "placeholder": "Digite o nome do salão",
+                    "description": "O nome do seu salão como aparecerá para os clientes"
+                },
+                "address": {
+                    "label": "Endereço",
+                    "placeholder": "Digite o endereço do salão",
+                    "description": "O endereço físico do seu salão"
+                }
+            },
+            "buttons": {
+                "save": "Salvar Configuração",
+                "saving": "Salvando...",
+                "apply": "Aplicar"
+            },
+            "toast": {
+                "success": "Configuração do salão atualizada com sucesso",
+                "error": "Falha ao atualizar a configuração do salão"
+            }
+        }
+    },
     "cookies": {
         "message": "Usamos cookies para melhorar sua experiência em nosso site.",
         "readMore": "Saiba mais",

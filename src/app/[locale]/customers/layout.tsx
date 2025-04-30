@@ -2,6 +2,7 @@
 
 import { CustomerProvider } from "@/components/providers/customer";
 import { redirect } from "@/i18n/navigation";
+import { verifySession } from "@/lib/auth/dal";
 import { getServerSession } from "@/lib/auth/server-session";
 import { getLocale } from "next-intl/server";
 
@@ -9,7 +10,7 @@ import { getLocale } from "next-intl/server";
 export default async function Layout({ children }: {
     children: React.ReactNode;
 }) {
-    const session = await getServerSession()
+    const { session } = await verifySession()
     const locale = await getLocale()
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/customers`, {
         method: "GET",

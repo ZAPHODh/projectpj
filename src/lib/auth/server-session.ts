@@ -1,7 +1,7 @@
 
 import "server-only";
 
-import { SESSION_COOKIE_NAME } from "@/lib/auth/helper";
+import { SESSION_COOKIE_MAX_AGE, SESSION_COOKIE_NAME } from "@/lib/auth/helper";
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from "next/headers";
 import { Session } from "./types";
@@ -55,4 +55,16 @@ export async function decode(token?: string): Promise<Session | undefined> {
         console.error("Falha na decodificação do token:", err);
         return undefined;
     }
+}
+
+export async function updateSession(session: string) {
+    const expires = new Date(Date.now() + SESSION_COOKIE_MAX_AGE)
+    const cookieStore = await cookies()
+    cookieStore.set('session', session, {
+        httpOnly: true,
+        secure: true,
+        expires: expires,
+        sameSite: 'lax',
+        path: '/',
+    })
 }

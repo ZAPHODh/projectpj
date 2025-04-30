@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 
 
 import type { ISchedule } from "@/calendar/interfaces";
-import type { TCalendarView } from "@/calendar/types";
 import { useCalendar } from "@/calendar/contexts/calendar";
 import { getSchedulesCount, navigateDate, rangeText } from "@/calendar/helper";
 import { getFnsLocale, formatDate } from "@/lib/helper";

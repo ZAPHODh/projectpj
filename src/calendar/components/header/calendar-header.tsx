@@ -9,7 +9,6 @@ import { DateNavigator } from "@/calendar/components/header/date-navigator";
 
 
 import type { ISchedule } from "@/calendar/interfaces";
-import type { TCalendarView } from "@/calendar/types";
 import { ProfessionalSelect } from "./professional-select";
 import { AddScheduleDialog } from "../dialogs/add-schedule";
 import { Link } from "@/i18n/navigation";

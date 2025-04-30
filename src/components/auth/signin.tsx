@@ -32,6 +32,7 @@ import { useSession } from "../providers/session";
 import { useRouter } from "@/i18n/navigation";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { Session } from "@/lib/auth/types";
 
 
 function SignIn({
@@ -66,8 +67,9 @@ function SignIn({
             return;
         }
 
-        const session = await res.json();
+        const session: Session = await res.json();
         setSession(session);
+        console.log(session.user.salonId)
         router.push("/calendar/day-view");
     }
     return (

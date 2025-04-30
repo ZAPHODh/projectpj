@@ -3,7 +3,7 @@
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 
 import type { ISchedule, IProfessional } from "@/calendar/interfaces";
-import { TVisibleHours, TWorkingHours } from "../types";
+
 
 interface ICalendarContext {
     selectedDate: Date;
@@ -35,10 +35,24 @@ const VISIBLE_HOURS = { from: 7, to: 18 };
 
 const CalendarContext = createContext({} as ICalendarContext);
 
-export function CalendarProvider({ children, professionals, schedules, initialServices }: { children: React.ReactNode; professionals: IProfessional[]; schedules: ISchedule[]; initialServices: Service[] }) {
+export function CalendarProvider({
+    children,
+    professionals,
+    schedules,
+    initialServices,
+    initialVisibleHours = VISIBLE_HOURS,
+    initialWorkingHours = WORKING_HOURS
+}: {
+    children: React.ReactNode;
+    professionals: IProfessional[];
+    schedules: ISchedule[];
+    initialServices: Service[];
+    initialWorkingHours?: TWorkingHours;
+    initialVisibleHours?: TVisibleHours;
+}) {
     const [badgeVariant, setBadgeVariant] = useState<"dot" | "colored">("dot");
-    const [visibleHours, setVisibleHours] = useState<TVisibleHours>(VISIBLE_HOURS);
-    const [workingHours, setWorkingHours] = useState<TWorkingHours>(WORKING_HOURS);
+    const [visibleHours, setVisibleHours] = useState<TVisibleHours>(initialVisibleHours);
+    const [workingHours, setWorkingHours] = useState<TWorkingHours>(initialWorkingHours);
 
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedProfessionalId, setSelectedProfessionalId] = useState<IProfessional["id"] | "all">("all");

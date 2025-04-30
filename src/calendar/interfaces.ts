@@ -1,10 +1,4 @@
-import type { TEventColor } from "@/calendar/types";
 
-// export interface IProfessional {
-//     id: string;
-//     name: string;
-//     picturePath: string | null;
-// }
 
 export interface IProfessional {
     id: string;

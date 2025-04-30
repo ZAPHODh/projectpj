@@ -25,9 +25,15 @@ interface User {
     roles: UserRole[];
     auditLogs: AuditLog[];
 }
-
+type TCalendarView = "day" | "week" | "month" | "year" | "agenda";
+type TEventColor = "blue" | "green" | "red" | "yellow" | "purple" | "orange" | "gray";
+type TBadgeVariant = "dot" | "colored" | "mixed";
+type TWorkingHours = { [key: number]: { from: number; to: number } };
+type TVisibleHours = { from: number; to: number };
 interface Salon {
     id: string;
+    workingHours: TWorkingHours
+    visibleHours: TVisibleHours
     ownerId: string;
     owner: User;
     name: string;

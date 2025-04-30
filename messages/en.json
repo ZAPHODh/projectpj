@@ -1,4 +1,68 @@
 {
+    "postalCode": {
+        "label": "Postal Code",
+        "placeholder": {
+            "default": "Enter postal code",
+            "br": "00000-000",
+            "us": "00000-0000",
+            "uk": "AA0 0AA"
+        },
+        "description": {
+            "br": "Brazilian postal code (CEP)",
+            "us": "US ZIP code",
+            "uk": "UK postcode",
+            "default": "Postal code"
+        },
+        "errors": {
+            "required": "Postal code is required",
+            "invalid": {
+                "br": "CEP must be in the format 00000-000",
+                "us": "ZIP code must be in the format 00000 or 00000-0000",
+                "uk": "Invalid UK postcode format",
+                "default": "Invalid postal code format"
+            }
+        },
+        "lookupFailed": "Could not find address for this postal code",
+        "lookupSuccess": "Address found"
+    },
+    "address": {
+        "street": "Street",
+        "neighborhood": "Neighborhood",
+        "city": "City",
+        "state": "State",
+        "country": "Country"
+    },
+    "salon": {
+        "config": {
+            "title": "Salon Configuration",
+            "description": "Update your salon's basic information and operating hours",
+            "sections": {
+                "basicInfo": "Basic Information",
+                "hoursConfig": "Hours Configuration"
+            },
+            "fields": {
+                "name": {
+                    "label": "Salon Name",
+                    "placeholder": "Enter salon name",
+                    "description": "The name of your salon as it will appear to customers"
+                },
+                "address": {
+                    "label": "Address",
+                    "placeholder": "Enter salon address",
+                    "description": "The physical address of your salon"
+                }
+            },
+            "buttons": {
+                "save": "Save Configuration",
+                "saving": "Saving...",
+                "apply": "Apply"
+            },
+            "toast": {
+                "success": "Salon configuration updated successfully",
+                "error": "Failed to update salon configuration"
+            }
+        }
+    },
     "cookies": {
         "message": "We use cookies to enhance your experience on our website.",
         "readMore": "Read more",

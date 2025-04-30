@@ -27,7 +27,6 @@ import {
     isWithinInterval
 } from "date-fns";
 
-import type { TCalendarView, TVisibleHours, TWorkingHours } from "@/calendar/types";
 import type { ICalendarCell, ISchedule } from "@/calendar/interfaces";
 
 // ================ Header helper functions ================ //
