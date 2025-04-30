@@ -13,7 +13,7 @@ import { CalendarAgendaView } from "@/calendar/components/agenda-view/calendar-a
 import { CalendarDayView } from "@/calendar/components/week-and-day-view/calendar-day-view";
 import { CalendarWeekView } from "@/calendar/components/week-and-day-view/calendar-week-view";
 
-import type { TCalendarView } from "@/calendar/types";
+
 import { useCalendar } from "../contexts/calendar";
 import { CalendarYearView } from "./year-view/calendar-year-view";
 
