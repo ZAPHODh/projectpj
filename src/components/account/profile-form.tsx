@@ -3,30 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
-
 import { toast } from "sonner"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
-
-
 import { Button } from "../ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { cn } from "@/lib/utils"
-
-import { CalendarIcon, ChevronDown } from "lucide-react"
-
-
-import { formatDate, getFnsLocale } from "@/lib/helper"
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { useSession } from "../providers/session"
-import { Calendar } from "../ui/calendar"
-
-
-
-
-
-
 
 
 function ProfileForm() {
@@ -43,8 +25,7 @@ function ProfileForm() {
             }),
     })
     type ProfileFormValues = z.infer<typeof profileFormSchema>
-    const currentLocale = useLocale()
-    const fnsLocale = getFnsLocale(currentLocale)
+
     const form = useForm<ProfileFormValues>({
         resolver: zodResolver(profileFormSchema),
         mode: "onChange",
