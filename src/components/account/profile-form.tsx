@@ -41,21 +41,6 @@ function ProfileForm() {
             .max(30, {
                 message: t('errors.name.max'),
             }),
-        dob: z.date({
-            required_error: t('errors.dob'),
-        }),
-        email: z
-            .string({
-                required_error: t('errors.email'),
-            })
-            .email(),
-        theme: z.enum(["light", "dark"], {
-            required_error: t('errors.theme'),
-        }),
-        font: z.enum(["inter", "manrope", "system"], {
-            invalid_type_error: t('errors.font'),
-            required_error: t('errors.font'),
-        }),
     })
     type ProfileFormValues = z.infer<typeof profileFormSchema>
     const currentLocale = useLocale()
@@ -65,7 +50,6 @@ function ProfileForm() {
         mode: "onChange",
         defaultValues: {
             name: session?.user.name || '',
-            dob: new Date()
         }
     })
 
@@ -99,52 +83,6 @@ function ProfileForm() {
                             </FormControl>
                             <FormDescription>
                                 {t('descriptions.name')}
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="dob"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel>{t('labels.dob')}</FormLabel>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <FormControl>
-                                        <Button
-                                            variant={"outline"}
-                                            className={cn(
-                                                "w-[200px] pl-3 text-left font-normal",
-                                                !field.value && "text-muted-foreground"
-                                            )}
-                                        >
-                                            {field.value ? (
-                                                formatDate(field.value, currentLocale, 'PPP')
-                                            ) : (
-                                                <span>{t('placeholders.date')}</span>
-                                            )}
-                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                        </Button>
-                                    </FormControl>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0" align="start">
-                                    <Calendar
-                                        mode="single"
-                                        locale={fnsLocale}
-                                        selected={field.value}
-                                        onSelect={field.onChange}
-                                        disabled={(date) =>
-                                            date > new Date() || date < new Date("1900-01-01")
-                                        }
-                                        className="rounded-lg border border-border p-2 bg-background"
-                                        captionLayout="dropdown"
-                                    />
-                                </PopoverContent>
-                            </Popover>
-                            <FormDescription>
-                                {t('descriptions.dob')}
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
