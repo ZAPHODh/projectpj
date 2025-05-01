@@ -14,13 +14,15 @@ import { Button } from "../ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { cn } from "@/lib/utils"
 
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, ChevronDown } from "lucide-react"
 
 
 import { formatDate, getFnsLocale } from "@/lib/helper"
 import { useLocale, useTranslations } from "next-intl"
 import { useSession } from "../providers/session"
-import { Calendar } from "../ui/year-calendar"
+import { Calendar } from "../ui/calendar"
+
+
 
 
 
@@ -102,7 +104,6 @@ function ProfileForm() {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="dob"
@@ -112,7 +113,6 @@ function ProfileForm() {
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <FormControl>
-
                                         <Button
                                             variant={"outline"}
                                             className={cn(
@@ -138,7 +138,8 @@ function ProfileForm() {
                                         disabled={(date) =>
                                             date > new Date() || date < new Date("1900-01-01")
                                         }
-                                        initialFocus
+                                        className="rounded-lg border border-border p-2 bg-background"
+                                        captionLayout="dropdown"
                                     />
                                 </PopoverContent>
                             </Popover>
