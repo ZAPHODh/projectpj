@@ -17,6 +17,8 @@ import { salonConfigSchema, SalonFormValues } from "@/schemas/salon"
 import { WorkingHoursInput } from "./working-houts-input"
 import { useOnborda } from "onborda"
 
+import { useEffect } from "react"
+import Cookies from "js-cookie"
 
 interface SalonConfigProps {
     initialData?: {
@@ -71,8 +73,6 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
     const [workingHours, setWorkingHours] = useState<TWorkingHours>(initialData?.workingHours || defaultWorkingHours)
     const [visibleHours, setVisibleHours] = useState<TVisibleHours>(initialData?.visibleHours || defaultVisibleHours)
     const [countryCode, setCountryCode] = useState<string>(initialData?.countryCode || "BR")
-
-
     const form = useForm<SalonFormValues>({
         resolver: zodResolver(salonConfigSchema),
         defaultValues: {
@@ -130,16 +130,21 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
         }
     }
 
+    useEffect(() => {
+        const hasSeenTour = Cookies.get("salonConfigTourShown")
+        if (!hasSeenTour) {
+            startOnborda('salonConfig')
+            Cookies.set("salonConfigTourShown", "true", { expires: 365 })
+        }
+    }, [startOnborda])
+
     return (
         <div className="space-y-6" id="salonConfig">
-
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8 p-4" id="salon-config-card">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8 p-4 " id="salon-config-card">
                     <div className="space-y-4">
-                        <Button onClick={() => startOnborda('salonConfig')}>testar</Button>
                         <h3 className="text-lg font-medium">{t("sections.basicInfo")}</h3>
                         <FormField
-
                             control={form.control}
                             name="name"
                             render={({ field }) => (
@@ -153,7 +158,6 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                                 </FormItem>
                             )}
                         />
-
                         <div className="space-y-4">
                             <div id="country-select">
                                 <label className="text-sm font-medium">{tAddress("country")}</label>
@@ -170,9 +174,7 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                                     </SelectContent>
                                 </Select>
                             </div>
-
                             <FormField
-
                                 control={form.control}
                                 name="cep"
                                 render={({ field }) => (
@@ -180,7 +182,6 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                                         <FormLabel>{tPostal("label")}</FormLabel>
                                         <FormControl>
                                             <PostalCodeInput
-
                                                 countryCode={countryCode}
                                                 onValueChange={field.onChange}
                                                 value={field.value}
@@ -194,7 +195,6 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                                     </FormItem>
                                 )}
                             />
-
                             <FormField
                                 control={form.control}
                                 name="address"
@@ -209,7 +209,6 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                                     </FormItem>
                                 )}
                             />
-
                             <FormField
                                 control={form.control}
                                 name="city"
@@ -225,22 +224,16 @@ export function SalonConfigForm({ initialData }: SalonConfigProps) {
                             />
                         </div>
                     </div>
-
                     <Separator />
-
                     <div className="space-y-6" id="working-hours-section">
                         <h3 className="text-lg font-medium">{t("sections.hoursConfig")}</h3>
-
                         <div className="space-y-6">
                             <WorkingHoursInput initialWorkingHours={workingHours} onChange={setWorkingHours} />
-
                             <Separator className="my-4" />
-
                             <VisibleHoursInput initialVisibleHours={visibleHours} onChange={setVisibleHours} />
                         </div>
                     </div>
-
-                    <Button type="submit" disabled={isSubmitting} id="save-config-button">
+                    <Button type="submit" disabled={isSubmitting} id="save-config-button" className="w-full md:w-[300px]">
                         {isSubmitting ? t("buttons.saving") : t("buttons.save")}
                     </Button>
                 </form>
